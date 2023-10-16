@@ -36,17 +36,15 @@ git clone https://github.com/BerkleyLim/Poly_Action_Test
 
 # QnA (갱신예정)
 1. React Native 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?
-- 저는 Profile Repository를 통해 Android뿐만 아닌 IOS도 호환되도록 Android WebView 기반 이외 Native 도입을 위해 시도를 해본적 있으나, 제대로 시작하지 못하였습니다.
-- 당시, Typescript와 React Native를 한번도 다뤄보지 않았으며 아직까지 보류상태로 남겨 두었지만, Typescript와 친해지고, React Native에 점차적으로 진입 전으로 남겨둔 상태였습니다.
-- 이번 프로젝트를 통해 React Native가 첫 프로젝트이며 현재 React Query로 개발 진행중 입니다. 
-<br/>
+> 저는 Profile Repository를 통해 Android뿐만 아닌 IOS도 호환되도록 Android WebView 기반 이외 Native 도입을 위해 시도를 해본적 있으나, 제대로 시작하지 못하였습니다.
+> 당시, Typescript와 React Native를 한번도 다뤄보지 않았으며 아직까지 보류상태로 남겨 두었지만, Typescript와 친해지고, React Native에 점차적으로 진입 전으로 남겨둔 상태였습니다.
+> 이번 프로젝트를 통해 React Native가 첫 프로젝트이며 현재 React Query로 개발 진행중 입니다.
 2. Flutter 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?
-- 저는 플로터의 대한 개발한 이력이 없기 때문에 답변을 드릴 수 없으며 앱 개발 역시 친해지면서 Flutter도 다뤄볼 예정입니다.
-<br/><br/>
+> 저는 플로터의 대한 개발한 이력이 없기 때문에 답변을 드릴 수 없으며 앱 개발 역시 친해지면서 Flutter도 다뤄볼 예정입니다.
 3. 지금까지 앱 개발시 가장 challenging 주제는 무엇이였고 어떻게 해결하셨습니까?
-- App 개발 처음 시작 시 삼성전자서비스 SM 개발을 진행 하면서 Android WebView 기반 mOffice 신규 페이지 추가와 문자 전송을 위해 Native단과 WebView 통신 새로 구현을 하여 진행을 하였습니다.
-- 저는 React Native를 모르는 상태로 폴리액션에서 처음으로 진행을 하였고, 현재 제로 베이스에 가까운 상태로 시작을 하였습니다.
-- React Native는 React 문법의 약 90퍼 정도로 유사한 구조 형태로 느끼고, 언어 적응을 하는데  
+> App 개발 처음 시작 시 삼성전자서비스 SM 개발을 진행 하면서 Android WebView 기반 mOffice 신규 페이지 추가와 문자 전송을 위해 Native단과 WebView 통신 새로 구현을 하여 진행을 하였습니다.
+> 저는 React Native를 모르는 상태로 폴리액션에서 처음으로 진행을 하였고, 현재 제로 베이스에 가까운 상태로 시작을 하였습니다.
+> React Native는 React 문법의 약 90퍼 정도로 유사한 구조 형태로 느끼고, 언어 적응을 하는데  
 
 # 마치며
 먼저, 폴리액션 스타트업체에게 기회를 주셔서 감사드립니다.
