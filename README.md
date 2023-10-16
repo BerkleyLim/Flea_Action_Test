@@ -13,6 +13,9 @@
 - 고객사께서 작품 구매를 위한 히스토리 페이지를 개발을 하기 위해 진행을 한다.
 - 
 
+# DeadLine
+- 23년 10월 20일(금) ??
+
 # Environment (갱신 예정)
 - OS : Windows 11
 - Node Version : 16.18.0
