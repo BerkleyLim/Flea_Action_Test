@@ -3,15 +3,21 @@
  - 프로젝트 특징 : React Native를 활용 할 수 있는 능력과, SSE Event를 활용하여 백엔드 API 연동
  - 실제 서비스는 방문 리스트 출력하는 메뉴를 확인 할 수 있으며 실행 전 연동을 할 수 있는지 본다.
 
-# Introduction
+# Object
 - 현재 웹 개발에 특화된 개발자로써 앱 개발까지 숙련도를 올릴 수 있는 프로젝트 중 하나
+- 아주 기초적이지만, React Native와 Back-End 통신을 하기 위해 숙련도를 올린다.
+- Android WebView 및 Native와 함께 사용하는 Hybrid App 외적으로 React Native 스택을 쌓는다.
+- 고객의 요구사항에 알맞게 수행하여 고객의 니즈를 충족시키는 개발자로 성장한다.
+
+# Request customer
+- 고객사께서 작품 구매를 위한 히스토리 페이지를 개발을 하기 위해 진행을 한다.
 - 
 
 # Environment (갱신 예정)
 - OS : Windows 11
 - Node Version : 16.18.0
 - App : React Native
-- Library : 
+- Library : React-Query, Recoil
 
 
 # Gettings Start (차후, 꾸준히 업데이트 예정) 
