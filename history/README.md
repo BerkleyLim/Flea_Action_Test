@@ -1,4 +1,4 @@
-# history
+9# history
 - 다음은 작업 내용의 대해 올려봅니다
 - 방문시 피드백 드리면 감사하겠습니다.
 
@@ -11,8 +11,12 @@
 - 화면단 테스트 성공
 
 ## 17일
+- RN폴더 구성 대략적으로 설정
+- sse 통신 성공 (현재 console.log 형식으로 받는 형태로만 개발 완료)
 - NatigatorContainer 환경 설정 작업
 - 환경 설정 작업 이후, 각각의 에러를 갖는다.
+> - app:mergeLibDexDebug 이슈 발생
 > - react-native-reanimated/android 찾을 수 없는 에러 발생
 > - Gradle 9.0 버전으로 업데이트 하라고 경고창 표시
-> - app:
+> - android 폴더안 Gradle 설정 및 androidmrbifest.xml 설정 이후 문제 발생
+> - 현재 해결해야함
