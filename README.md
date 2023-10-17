@@ -16,7 +16,6 @@
 - 전 단계인 React Native와 Server와 통신하여 해당 로그를 읽고, 로그의 토대로 데이터 삽입
 - 이와 동시에 SSE 기법과 React Native의 이해도와 활용하는 방법을 학습을 요망
 
-
 # DeadLine
 - <div style="font-size:1.5em;">
     23년 10월 <s style="font-color:gray; font-size:50%">20일(금)</s> 23(월)
@@ -61,7 +60,7 @@ git clone https://github.com/BerkleyLim/Poly_Action_Test
 > - React Native는 React 문법의 약 90퍼 정도로 유사한 구조 형태로 느끼고, 언어 적응을 하는데  
 
 # End
-먼저, 플리액션 고객사에게 기회를 주셔서 감사드립니다. <br/>
+먼저, 플리액션 고객사에게 앱개발의 기회를 주셔서 감사드립니다. <br/>
 지금까지의 저는 웹 개발자에 특화된 개발 자중 하나인 상태로 스택을 보유하고 있었습니다. <br/>
 React 스택을 얻고나서 React Native 개발을 접하면서 또 하나의 스택을 얻게 되었으며 보다 더 개발의 대한 자신감이 생기게 되었습니다. <br/>
 차후, 저와 귀사와 맞는 개발자가 되고, 원활한 협업과 동시에 함께하는 인재로 만나뵙고 싶습니다. <br/>
