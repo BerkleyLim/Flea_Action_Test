@@ -1,4 +1,4 @@
-9# history
+# history
 - 다음은 작업 내용의 대해 올려봅니다
 - 방문시 피드백 드리면 감사하겠습니다.
 
@@ -18,5 +18,5 @@
 > - app:mergeLibDexDebug 이슈 발생
 > - react-native-reanimated/android 찾을 수 없는 에러 발생
 > - Gradle 9.0 버전으로 업데이트 하라고 경고창 표시
-> - android 폴더안 Gradle 설정 및 androidmrbifest.xml 설정 이후 문제 발생
+> - android 폴더안 Gradle 설정 및 androidmanifest.xml 설정 이후 문제 발생
 > - 현재 해결해야함
