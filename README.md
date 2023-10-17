@@ -24,7 +24,7 @@
 
 # Environment (갱신 예정)
 - OS : Windows 11
-- Node Version : 16.18.0
+- Node Version : 16.18.0 (가급적 동일한 버전 사용 추천 - 다른 버전일 경우 설정에 맞춰야 한다.)
 - App : React Native
 - Library : React-Query, Recoil
 
