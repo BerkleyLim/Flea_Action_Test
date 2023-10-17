@@ -34,7 +34,7 @@
 (1) 먼저 clone을 받는다.
 
 ```
-git clone https://github.com/BerkleyLim/Poly_Action_Test
+git clone https://github.com/BerkleyLim/Flea_Auction_Test
 ```
 <br/>
 (2) 다음으로 npm으로 node_module 설치
