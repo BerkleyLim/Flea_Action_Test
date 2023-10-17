@@ -20,6 +20,7 @@ const Stack = createStackNavigator();
 
 function App(): JSX.Element {
   return (
+  // 코드 설명 : 아래는 NavigationContainer 설정하여 각각 스크린마다 이동 시 설정한다.
   // <QueryClientProvider client={queryClient}>
   //   <NavigationContainer>
   //     {/* <Stack.Navigator initialRouteName="Body"> */}
