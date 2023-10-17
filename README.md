@@ -4,7 +4,7 @@
  - 실제 서비스는 방문 리스트 출력하는 메뉴를 확인 할 수 있으며 실행 전 연동을 할 수 있는지 본다.
  - 마지막으로 고객이 필요한 개발을 해주는 것으로 목표로 둔다.
 
-# Custemer Name (고객사 명)
+# Client Name (고객사 명)
 - (주) 플리옥션 (Flea Auction. Inc)
 - 업종 : 미술 작품 판매 및 중계 (추정)
 - Homepage : https://fleaauction.co/
