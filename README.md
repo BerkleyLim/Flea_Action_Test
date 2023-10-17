@@ -34,12 +34,21 @@
 (1) 먼저 clone을 받는다.
 
 ```
-git clone https://github.com/BerkleyLim/Flea_Auction_Test
+$ git clone https://github.com/BerkleyLim/Flea_Auction_Test
 ```
 <br/>
 (2) 다음으로 npm으로 node_module 설치
 
+```
+$ cd ./Flea_Auction_Test/mApp
+$ npm install
+```
+
 (3) 이후 npm run start
+
+```
+$ npm run start
+```
 
 # QnA (갱신예정)
 <h3>1. React Native 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?</h3>
