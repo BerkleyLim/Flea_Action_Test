@@ -9,3 +9,10 @@
 - React Native 설치 후 VS code 기반으로 쓸때 없는 빨간줄 제거
 - ESline.js prettier.jsc 파일을 건들어 나만의 에디터 표기 설정
 - 화면단 테스트 성공
+
+## 17일
+- NatigatorContainer 환경 설정 작업
+- 환경 설정 작업 이후, 각각의 에러를 갖는다.
+> - react-native-reanimated/android 찾을 수 없는 에러 발생
+> - Gradle 9.0 버전으로 업데이트 하라고 경고창 표시
+> - app:
