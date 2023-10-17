@@ -33,6 +33,7 @@
 - App : React Native
 - Library : React-Query, Recoil
 
+<img src="./storage/readme/environment.jpg" alt="개발 환경 상세" />
 
 # Gettings Start (차후, 꾸준히 업데이트 예정) 
 <h3>React Native 빌드 후 실행 방법 (Local)</h3>
