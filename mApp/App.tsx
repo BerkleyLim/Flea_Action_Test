@@ -4,65 +4,37 @@
  *
  * @format
  */
-
-import React, { Component } from 'react';
-import type {PropsWithChildren} from 'react';
+import "react-native-gesture-handler";
+import React from 'react';
 import {QueryClient, QueryClientProvider, useQuery} from 'react-query';
-import {
-  Button,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
-import { ThemeProvider } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-
-const headerText = {
-  // fontStyle: "italic",
-  // fontWeidht: "bold"
-  fontSize:10,
-}
-
-const headerStyle ={
-  backgroundColor: "yellow",
-}
-
-const Header = () => {
-  return(
-    <View style={headerStyle}>
-      <Text style={headerText}>텍스트</Text>
-      <Text style={headerText}>텍스트</Text>
-    </View>
-  )
-}
-
-const Body = () => {
-  // const result = useQuery('posts', postData);
-  // const { data, error, isLoading } = result;
-
-  // if (isLoading) return <Component>...</Component>;
-  // if (error) return <Component>...</Component>;
-
-  return (
-    <View>
-      <Button title={"hi"} 
-          // onPress=}
-      ></Button>
-    </View>
-  )
-}
+import Body from './src/page/component/Body'
+import Body2 from './src/page/component/Body2'
 
 const queryClient = new QueryClient();
 
+const Stack = createStackNavigator();
+
 function App(): JSX.Element {
   return (
+  <QueryClientProvider client={queryClient}>
+    <NavigationContainer>
+      {/* <Stack.Navigator initialRouteName="Body"> */}
+      <Stack.Navigator>
+        <Stack.Screen name="Body" component={Body} />
+        {/* <Stack.Screen name="Body2" component={Body2} options={{ headerShown:false }}/> */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  </QueryClientProvider>
     // Provider Setting
-    <QueryClientProvider client={queryClient}> 
-      <SafeAreaView>
-        <Header />
-        <Body></Body>
-      </SafeAreaView>
-    </QueryClientProvider>
+    // <QueryClientProvider client={queryClient}> 
+    //   <SafeAreaView>
+    //     <Header /> 
+    //     <Body></Body>
+    //   </SafeAreaView>
+    // </QueryClientProvider>
 
   );
 }
