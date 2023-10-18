@@ -1,22 +1,33 @@
 import React from 'react'
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 
-const headerText = {
-  // fontStyle: "italic",
-  // fontWeidht: "bold"
-  fontSize:10,
-}
+// CSS 꾸미기
+const styles = StyleSheet.create({
+  headerStyle : {
+    backgroundColor: "yellow",
+    border: 1,
+    borderStyle: "solid",
+    width:'100%',
+    height:75
+  },
+  headerText : {
+    fontStyle: "italic",
+    fontWeight: "bold",
+    paddingTop: 5,
+    paddingBottom: 5,
+    textAlign:'center',
+    fontSize:50,
+    justifyContent:'center',
+    // flex: '1 0 0'
+  },
+})
 
-const headerStyle ={
-  backgroundColor: "yellow",
-}
 
 const Header = () => {
   return(
-    <View style={headerStyle}>
-      <Text style={headerText}>텍스트</Text>
-      <Text style={headerText}>텍스트</Text>
+    <View style={styles?.headerStyle}>
+      <Text style={styles?.headerText}>Header</Text>
     </View>
   )
 }
