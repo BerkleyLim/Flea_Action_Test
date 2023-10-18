@@ -50,11 +50,17 @@ $ cd ./Flea_Auction_Test/mApp
 $ npm install
 ```
 
-(3) 이후 npm run start
+(3) 이후 npm run start(개발모드 - 배포모드x)
 
 ```
 $ npm run start
 ```
+
+(4) android 폴더로 들어가 빌드를 해줍니다.
+
+(5) 이후 안드로이드 배포
+
+(6) ios 배포해줍니다. (mac os가 없으므로 실제 테스트 불가능)
 
 # QnA (갱신예정)
 <h3>1. React Native 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?</h3>
