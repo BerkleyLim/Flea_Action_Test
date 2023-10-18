@@ -61,7 +61,8 @@ $ npm run start
 
 > - 저는 Profile Repository를 통해 Android뿐만 아닌 IOS도 호환되도록 Android WebView 기반 이외 Native 도입을 위해 시도를 해본적 있으나, 제대로 시작하지 못하였습니다.
 > - 당시, Typescript와 React Native를 한번도 다뤄보지 않았으며 아직까지 보류상태로 남겨 두었지만, Typescript와 친해지고, React Native에 점차적으로 진입 전으로 남겨둔 상태였습니다.
-> - 이번 프로젝트를 통해 React Native가 첫 프로젝트이며 현재 React Query로 개발 진행중 입니다.
+> - 이번 프로젝트를 통해 React Native가 첫 프로젝트이며 현재 React Query로 실시간 UI 출력해주는 역할을 해주는 기능으로 구현 시켰고, SSE로 실시간으로 처리하는 용도로 사용하였습니다.
+> - 개발이 완료될 경우 React Query로 실시간 비동기 처리와 Redux로 이용하여 state 영구 저장 기법으로 UI출력 이력을 저장하는 기법으로 구현해 볼 예정입니다.
 <br/>
 <h3>2. Flutter 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?</h3>
 
