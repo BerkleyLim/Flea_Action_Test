@@ -80,6 +80,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        // 해결 : Execution failed for task ':app:mergeLibDexDebug'.
+        multiDexEnabled true
     }
     signingConfigs {
         debug {
@@ -104,6 +106,8 @@ android {
 }
 
 dependencies {
+    // 해결 : Execution failed for task ':app:mergeLibDexDebug'.
+    implementation 'androidx.multidex:multidex:2.0.1'    // add here
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 
