@@ -1,49 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Header from './common/Header'
+import { Button, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import MainHeader1 from './MainHeader1'
 import EventSource, { EventSourceListener } from 'react-native-sse';
 import { useQuery } from 'react-query';
 
-
-// const EventSSE = () => {
-//   const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
-  
-//   // sse 열기
-//   // 연결 시 할일
-//   source.addEventListener("open", (e:any) => {
-//     console.log('Open SSE connection.');
-//   })
-  
-//   source.addEventListener("message", async (e:any) => {
-//     console.log("New message event:", e.data);
-//     const response = await e.data;
-//     console.log("메시지 이벤트 중")
-//     return JSON.parse(response);
-//   })
-
-//   source.addEventListener("error", (e:any) => {
-//     if (e.type === "error") {
-//       console.error("Connection error:", e.message);
-//     } else if (e.type === "exception") {
-//       console.error("Error:", e.message, e.error);
-//     }
-//   });
-  
-//   source.addEventListener("close", (e:any) => {
-//     console.log("Close SSE connection.");
-//   });
-
-//   console.log("성공")
-// };
-
 // CSS 꾸미기
+let screenWidth = Dimensions.get('window').width;
+let screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   bodyStyle : {
-    // backgroundColor: "gray",
     border: 1,
     borderStyle: "solid",
-    height:250
+    width: '100%',
+    height:550
   },
   bodyText : {
     fontStyle: "italic",
@@ -57,24 +26,28 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     backgroundColor:"gray",
-    height: 100,
-    verticalAlign:"middle"
+    // width: screenWidth
+    height:"100%"
   },
   scrollContainerView: {
-    width : 130,
-    height : 100,
+    margin:15,
     padding: 10,
-    border: '1 solid',
-    borderColor: "black",
-    AlignItems: "center",
-    verticalAlign: "middle"
+    backgroundColor : "#5f9ea0",
+    flex: 1,
+    width : 150,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   scrollCentainerText:{
-    padding: 5,
-    fontSize: 20,
-    borderStyle: "solid",
-    textAlign:"center",
-    verticalAlign: "middle"
+    // padding: 5,
+    // fontSize: 20,
+    // borderStyle: "solid",
+    // textAlign:"center",
+    // verticalAlign: "middle"
+    fontSize : 20,
+    padding : 15,
+    color : 'white',
+    textAlign: 'center'
   }
 })
 
@@ -138,7 +111,7 @@ const Body = () => {
   console.log("return : " + datas)
   return (
     <View style={styles?.bodyStyle}>
-      <Header></Header>
+
       <MainHeader1></MainHeader1>
       <ScrollView
         horizontal={true}
@@ -146,272 +119,34 @@ const Body = () => {
         onMomentumScrollEnd ={() => {console.log('Scrolling is End')}}
         style={styles?.scrollContainer}
       >
-        {/* <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View> */}
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
         {
-          // datas?.map((d, index) => {
-          //   <View key={index} style={styles?.scrollContainerView}>
-          //     <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
-          //     <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
-          //   </View>
-          // })
-        }
-      </ScrollView>
-      <MainHeader1></MainHeader1>
-      <ScrollView
-        horizontal={true}
-        showsHorizontalScrollIndicator = {true}
-        onMomentumScrollEnd ={() => {console.log('Scrolling is End')}}
-        style={styles?.scrollContainer}
-      >
-        {/* <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View>
-        <View style={styles?.scrollContainerView}>
-          <Text style={styles?.scrollCentainerText}>auctionId</Text>
-          <Text style={styles?.scrollCentainerText}>viewCount</Text>
-        </View> */}
-        {
-          datas?.map((d, index) => {
-            <View key={index} style={styles?.scrollContainerView}>
+          datas?.map((d) => {
+            <View style={styles?.scrollContainerView}>
               <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
               <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
             </View>
           })
         }
       </ScrollView>
+      <MainHeader1></MainHeader1>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator = {true}
+        onMomentumScrollEnd ={() => {console.log('Scrolling is End')}}
+        style={styles?.scrollContainer}
+      >
+        {
+          datas?.map((d) => {
+            <View style={styles?.scrollContainerView}>
+              <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
+              <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
+            </View>
+          })
+        }
+      </ScrollView>
+      <MainHeader1></MainHeader1>
     </View>
   )
 }
-
-
-
 
 export default Body;
