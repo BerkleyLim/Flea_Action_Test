@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Button, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import MainHeader1 from './MainHeader1'
 import EventSource, { EventSourceListener } from 'react-native-sse';
@@ -109,23 +109,25 @@ const Body = () => {
   // };
 
   console.log("return : " + datas)
+  const scrollViewRef = useRef<ScrollView|null>(null);
   return (
     <View style={styles?.bodyStyle}>
 
       <MainHeader1></MainHeader1>
       <ScrollView
+        ref={scrollViewRef}
         horizontal={true}
         showsHorizontalScrollIndicator = {true}
         onMomentumScrollEnd ={() => {console.log('Scrolling is End')}}
         style={styles?.scrollContainer}
       >
         {
-          datas?.map((d) => {
-            <View style={styles?.scrollContainerView}>
-              <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
-              <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
-            </View>
-          })
+            datas?.map((d, index) => 
+              <View key={index} style={styles?.scrollContainerView}>
+                <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
+                <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
+              </View>
+            )
         }
       </ScrollView>
       <MainHeader1></MainHeader1>
@@ -136,12 +138,12 @@ const Body = () => {
         style={styles?.scrollContainer}
       >
         {
-          datas?.map((d) => {
-            <View style={styles?.scrollContainerView}>
+          datas?.map((d, index) => 
+            <View key={index} style={styles?.scrollContainerView}>
               <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
               <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
             </View>
-          })
+          )
         }
       </ScrollView>
       <MainHeader1></MainHeader1>
