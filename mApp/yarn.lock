@@ -1702,10 +1702,10 @@
     prompts "^2.4.0"
     semver "^7.5.2"
 
-"@react-native-community/masked-view@^0.1.11":
-  version "0.1.11"
-  resolved "https://registry.npmjs.org/@react-native-community/masked-view/-/masked-view-0.1.11.tgz"
-  integrity sha512-rQfMIGSR/1r/SyN87+VD8xHHzDYeHaJq6elOSCAD+0iLagXkSI2pfA0LmSXP21uw5i3em7GkkRjfJ8wpqWXZNw==
+"@react-native-masked-view/masked-view@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/@react-native-masked-view/masked-view/-/masked-view-0.3.0.tgz"
+  integrity sha512-qLyoObcjzrkpNcoJjXquUePXfL1dXjHtuv+yX0zZ0Q4kG5yvVqd620+tSh7WbRoHkjpXhFBfLwvGhcWB2I0Lpw==
 
 "@react-native/assets-registry@^0.72.0":
   version "0.72.0"
@@ -1965,6 +1965,11 @@
   version "15.7.8"
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.8.tgz"
   integrity sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==
+
+"@types/react-native-event-source@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/@types/react-native-event-source/-/react-native-event-source-1.1.1.tgz"
+  integrity sha512-ZK/Z+1wC2jeu098WfXgGfK7vC6eF/YeeWjvNr8s1tNnweDWh737diwQc3avkXY1+eWbBTgPtbhi9EW35Fk7VPw==
 
 "@types/react-native@^0.72.3":
   version "0.72.3"
@@ -5394,6 +5399,11 @@ optionator@^0.9.3:
     prelude-ls "^1.2.1"
     type-check "^0.4.0"
 
+options@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.npmjs.org/options/-/options-0.0.6.tgz"
+  integrity sha512-bOj3L1ypm++N+n7CEbbe473A414AB7z+amKYshRb//iuL3MpdDCLhPnw6aVTdKB9g5ZRVHIEp8eUln6L2NUStg==
+
 ora@^5.4.1:
   version "5.4.1"
   resolved "https://registry.npmjs.org/ora/-/ora-5.4.1.tgz"
@@ -5700,6 +5710,11 @@ react-is@^17.0.1:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-native-event-source@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/react-native-event-source/-/react-native-event-source-1.1.0.tgz"
+  integrity sha512-CAs76IW8kTrdy0okfV2KPopm7E9TL0uNAR+SRrN7iZ/ii0zBeHWuhD4Q2F8gRKvmkrEtCZ6uwnfYL2TFmK0QZg==
+
 react-native-gesture-handler@^2.13.2, "react-native-gesture-handler@>= 1.0.0":
   version "2.13.2"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.13.2.tgz"
@@ -5733,11 +5748,6 @@ react-native-screens@^3.25.0, "react-native-screens@>= 3.0.0":
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
-
-react-native-sse@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/react-native-sse/-/react-native-sse-1.1.0.tgz"
-  integrity sha512-qPhZwuVg7ry0Cw8Q2+0VH90on223obZcfB5a/2ktoD3951zWx7HXAtrqQtDfLGjv7ncSJoswd+efn2k0uoR5lw==
 
 react-native@*, react-native@>=0.57, react-native@0.72.6:
   version "0.72.6"
@@ -5812,7 +5822,7 @@ react-test-renderer@18.2.0:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.0"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@>=16.0, react@>=16.8, react@>=17.0.0, react@18.2.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@>=16, react@>=16.8, react@>=17.0.0, react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
@@ -6257,6 +6267,13 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
+
+sse@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/sse/-/sse-0.0.8.tgz"
+  integrity sha512-cviG7JH31TUhZeaEVhac3zTzA+2FwA7qvHziAHpb7mC7RNVJ/RbHN+6LIGsS2ugP4o2H15DWmrSMK+91CboIcg==
+  dependencies:
+    options "0.0.6"
 
 stack-utils@^2.0.3:
   version "2.0.6"
