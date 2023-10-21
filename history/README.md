@@ -2,6 +2,8 @@
 - 다음은 작업 내용의 대해 올려봅니다
 - 방문시 피드백 드리면 감사하겠습니다.
 
+<br/><br/>
+
 ## 16일
 - 고객 요구 사항 분석
 - React-Native Cli 버전으로 설치
@@ -9,6 +11,8 @@
 - React Native 설치 후 VS code 기반으로 쓸때 없는 빨간줄 제거
 - ESline.js prettier.jsc 파일을 건들어 나만의 에디터 표기 설정
 - 화면단 테스트 성공
+
+<br/><br/>
 
 ## 17일
 - RN폴더 구성 대략적으로 설정
@@ -21,7 +25,9 @@
 > - android 폴더안 Gradle 설정 및 androidmanifest.xml 설정 이후 문제 발생
 > - 현재 해결해야함
 
-# 18일
+<br/><br/>
+
+## 18일
 - Android 환경에서 app:mergeLibDexDebug 이슈 해결
 > - Issue #1 참조, 이 원인은 masked-view 패키지 충돌 때문에 진행이 되지 않음
 > - 어제 masked-view와 관련된 패키지를 설치하여 충돌 문제로 android gradle build 과정에서 에러 남
@@ -31,7 +37,10 @@
 - NavigatorContainer 버그 걸린 부분의 대해 하나하나 잡아가기 
 > - 보통 서비스 작업 진행 시 Android Native App Intent 역할, React 웹 환경에서 React-Router-Dom 역할로 진행할 것이다.
 
+<br/><br/>
+
 # 19일~21일
+- masked-view 라이브러리를 @react-native-masked-view/masked-view 로 변경
 - SSE 연동 문제로 인해 여러개의 디버그 툴과 Android App 부분 로그 확인과정에서 디버그 툴 사용
 > React-devToos, Debugge-UI, VS code Debugger (LogCat 지원), React-Naive-Debugger 등
 - Logcat으로 확인 한 결과, SSE 연동은 성공적으로 잘 돌아가나 아래의 메소드로 UI 부분에서 출력 되지 않음
