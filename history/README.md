@@ -30,3 +30,22 @@
 - SSE 연동까지 성공 이후, 코드 정리와 component 분할까지 나누고, 불필요한 패키지도 정리 예정
 - NavigatorContainer 버그 걸린 부분의 대해 하나하나 잡아가기 
 > - 보통 서비스 작업 진행 시 Android Native App Intent 역할, React 웹 환경에서 React-Router-Dom 역할로 진행할 것이다.
+
+# 19일~21일
+- SSE 연동 문제로 인해 여러개의 디버그 툴과 Android App 부분 로그 확인과정에서 디버그 툴 사용
+> React-devToos, Debugge-UI, VS code Debugger (LogCat 지원), React-Naive-Debugger 등
+- Logcat으로 확인 한 결과, SSE 연동은 성공적으로 잘 돌아가나 아래의 메소드로 UI 부분에서 출력 되지 않음
+```
+source.current.addEventListener("message", (e: any) => {
+  console.log("응답시간" + JSON.stringify(data))
+  console.log( data.data) 
+  console.log( data.type)
+  const d = JSON.parse(data.data) as Data;
+  setDatas((prevData: any) => [...prevData, d]);
+});
+```
+- Library는 아래와 같이 사용 했으나 결과가 똑같고, 마지막에는 순수 JS로 가능한 EventSource 사용
+> - react-native-sse
+> - react-native-event-source
+- 마지막 아래의 링크 참조 결과 React Native 에서 만든 SSE 기능을 Android 환경에서는 따로 손을 봐주지 않으면 정상 작동 되지 않는 것으로 확인
+- 링크 :  https://github.com/facebook/react-native/issues/28835
