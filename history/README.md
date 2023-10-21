@@ -58,3 +58,4 @@ source.current.addEventListener("message", (e: any) => {
 > - react-native-event-source
 - 마지막 아래의 링크 참조 결과 React Native 에서 만든 SSE 기능을 Android 환경에서는 따로 손을 봐주지 않으면 정상 작동 되지 않는 것으로 확인
 - 링크 :  https://github.com/facebook/react-native/issues/28835
+- Android 환경에서 네트워크 통신은 http 프로토콜 요청이 기본적으로 막혀있음
