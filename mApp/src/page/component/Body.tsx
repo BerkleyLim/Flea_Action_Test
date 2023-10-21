@@ -24,11 +24,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 50,
     justifyContent: 'center',
-    // flex: '1 0 0'
   },
   scrollContainer: {
     backgroundColor: "gray",
-    // width: screenWidth
     height: "100%"
   },
   scrollContainerView: {
@@ -41,11 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollCentainerText: {
-    // padding: 5,
-    // fontSize: 20,
-    // borderStyle: "solid",
-    // textAlign:"center",
-    // verticalAlign: "middle"
     fontSize: 20,
     padding: 15,
     color: 'white',
@@ -64,102 +57,36 @@ interface Data {
   auctionId: number,
   viewCount: number
 }
-
-
-// const sse = ({ setDatas }: any) => {
-//   const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
-
-//   try {
-    // const listener: EventSourceListener = (e: any) => {
-    //   if (e.type === "open") {
-    //     console.log("SSE 오픈");
-    //   } else if (e.type === "message") {
-    //     const d = JSON.parse(e.data) as Data;
-
-    //     setDatas((prevData: any) => [...prevData, d]);
-
-    //     console.log(`Received auctionId ${d?.auctionId}, viewCount: ${d?.viewCount}`);
-    //   } else if (e.type === "error") {
-    //     console.error("Connection error:", e.message);
-    //   } else if (e.type === "exception") {
-    //     console.error("Error:", e.message, e.error);
-    //     if (!e.error.message.includes("No activity"))
-    //       source.close();
-    //   }
-    // };
-
-    // source.addEventListener("open", listener);
-    // source.addEventListener("message", listener);
-    // source.addEventListener("error", listener);
-
-//   } catch (e) {
-//     console.log(e)
-//   }
-
-//   return () => {
-//     source.removeAllEventListeners();
-//     source.close();
-//   };
-// }
-
 const Body = () => {
   const [datas, setDatas] = useState<Data[]>();
 
   const source = useRef<RNEventSource>();
-  source.current = new RNEventSource("https://api.fleaauction.world/v2/sse/event");
 
-  try {
-    // source.current.open();
-    source.current.addEventListener("message", (e: any) => {
-      console.log( e )
-      console.log( e.data)
-      console.log( e.type)
-      const d = JSON.parse(e.data) as Data;
-
-      setDatas((prevData: any) => [...prevData, d]);
-    });
-    // source.current.addEventListener("error", (e: any) => {
-    //   console.error("Connection error:", e.message, e.error);
-    // });
-
-  } catch (e) { 
-    console.log(e) 
-  }
-
-  // return () => {
-  //   source.current?.removeAllEventListeners();
-  //   source.current?.close();
-  // };
-  // let e = null;
   useEffect(() => {
-    // debugger
-    // source.current = new RNEventSource("https://api.fleaauction.world/v2/sse/event");
+    source.current = new RNEventSource("https://api.fleaauction.world/v2/sse/event");
 
-    // try {
-    //   // source.current.open();
-    //   debugger
-    //   source.current.addEventListener("message", (e: any) => {
-    //     console.log( e.data)
-    //     console.log( e.type)
-    //     const d = JSON.parse(e.data) as Data;
+    try {
+      source.current.addEventListener("message", (e: any) => { 
+        console.log("응답시간" + JSON.stringify(e))
+        console.log( e.data) 
+        console.log( e.type)
+        const d = JSON.parse(e.data) as Data;
 
-    //     setDatas((prevData: any) => [...prevData, d]);
-    //   });
-    //   // source.current.addEventListener("error", (e: any) => {
-    //   //   console.error("Connection error:", e.message, e.error);
-    //   // });
-
-    // } catch (e) { 
-    //   console.log(e) 
-    // }
+        setDatas((prevData: any) => [...prevData, d]);
+      });
+      source.current.addEventListener("error", (e: any) => {
+        console.error("Connection error:", e.message, e.error);
+      });
+  
+    } catch (e) { 
+      console.log(e) 
+    }
  
-    // // return () => {
-    // //   source.current?.removeAllEventListeners();
-    // //   source.current?.close();
-    // // };
+    return () => {
+      source.current?.close();
+    };
   }, [])
 
-  // console.log(e)
 
   const scrollViewRef = useRef<ScrollView | null>(null);
   console.log(datas)
@@ -167,7 +94,7 @@ const Body = () => {
   return (
     <View style={styles?.bodyStyle}> 
 
-      <MainHeader1></MainHeader1>
+      <MainHeader1></MainHeader1> 
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
@@ -182,7 +109,7 @@ const Body = () => {
           </View>
         </Button> */}
         {
-          datas?.map((d, index) =>
+          datas?.map((d, index) => 
             <View key={index} style={styles?.scrollContainerView}>
               <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
               <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
@@ -206,7 +133,7 @@ const Body = () => {
           )
         }
       </ScrollView>
-      <MainHeader1></MainHeader1>
+      <MainHeader1></MainHeader1>  
     </View>
   )
 }
