@@ -6,39 +6,53 @@
  - 재 연결 시 데이터 값이 완전 초기화가 되기 때문에 재호출은 금지 (React Query는 API 연동 하고, 서버에 이미 저장되어있는 값이 존재 할 경우에만 유용하다.)
  - 마지막으로 고객이 필요한 개발을 해주는 것으로 목표로 둔다.
 
-# Client Name (고객사 명)
+ <br/><br/>
+
+## Client Name (고객사 명)
 - (주) 플리옥션 (Flea Auction. Inc)
 - 업종 : 미술 작품 판매 및 중계 (추정)
 - Homepage : https://fleaauction.co/
 
-# Object
+ <br/><br/>
+
+## Object
 - 현재 웹 개발에 특화된 개발자로써 앱 개발까지 숙련도를 올릴 수 있는 프로젝트 중 하나
 - 아주 기초적이지만, React Native와 Back-End 통신을 하기 위해 숙련도를 올린다.
 - Android WebView 및 Native와 함께 사용하는 Hybrid App 외적으로 React Native 스택을 쌓는다.
 - 마지막으로, 개발 숙련도를 올리면서 고객의 요구사항에 알맞게 수행하여 고객에게 환영받는 개발자로 목표로 한다.
 
-# User Requirements Specifacation
+<br/><br/>
+
+## User Requirements Specifacation
 - 고객사께서 작품 구매를 위한 히스토리 페이지를 개발을 하기 위해 진행을 한다.
 - SSE 기법으로 이용하여 옥션으로 판매 하는 형식으로 실시간 UI 갱신을 원한다.
 - 전 단계인 React Native와 Server와 통신하여 해당 로그를 읽고, 로그의 토대로 데이터 삽입
 - 이와 동시에 SSE 기법과 React Native의 이해도와 활용하는 방법을 학습을 요망
 
-# DeadLine
+<br/><br/>
+
+## DeadLine
 - <div style="font-size:1.5em;">
     23년 10월 <s style="font-color:gray; font-size:50%">20일(금)</s> 23(월)
     <span style="font-color:red; font-size:80%">(보다 더 깔끔한 개발을 위해 마감 날짜 연장)</span>
   </div>
 
-# Environment (갱신 예정)
+<br/><br/>
+
+## Environment (갱신 예정)
 - OS : Windows 11
 - Node Version : 16.18.0 (가급적 동일한 버전 사용 추천 - 다른 버전일 경우 설정에 맞춰야 한다.)
 - App : React Native
-- Library : react-native-sse, react, React-Query
+- Gradle : 7.5.1
+- Library : react
 
 <img src="./storage/readme/environment.jpg" alt="개발 환경 상세" />
 
-# Gettings Start (차후, 꾸준히 업데이트 예정) 
-<h3>React Native 빌드 후 실행 방법 (Local)</h3>
+
+<br/><br/>
+
+## Gettings Start (차후, 꾸준히 업데이트 예정) 
+<h3>React Native 빌드 후 실행 방법 (Local - Debugger 모드)</h3>
 (1) 먼저 clone을 받는다.
 
 ```
@@ -64,7 +78,14 @@ $ npm run start
 
 (6) ios 배포해줍니다. (mac os가 없으므로 실제 테스트 불가능)
 
-# QnA (갱신예정)
+<br/><br/>
+
+## History
+- history 폴더의 README.md를 참조하세요. [링크]("./history")
+
+<br/><br/>
+
+## QnA (갱신예정)
 <h3>1. React Native 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?</h3>
 
 > - 저는 Profile Repository를 통해 Android뿐만 아닌 IOS도 호환되도록 Android WebView 기반 이외 Native 도입을 위해 시도를 해본적 있으나, 제대로 시작하지 못하였습니다.
@@ -91,7 +112,9 @@ $ npm run start
 > - 마지막으로 평소 css를 bootstrap에 익숙했던 저로써 RN에 bootstrap을 사용할 수 없는 환경에 css 표현에 대해 어색함을 느꼈으나 잘 적응하여 적용하였습니다.
 > - 향후, MAC OS 장비를 보유하게 된다면 IOS 환경까지 연동 가능한 상태로 구현하고 싶습니다. (Window에서는 XCode 설치 불가능하기 때문에 테스트 환경이 제한적입니다.)
 
-# End
+<br/><br/>
+
+## End
 먼저, 플리옥션 고객사에게 앱개발의 기회를 주셔서 감사드립니다. <br/>
 지금까지의 저는 웹 개발자에 특화된 개발 자중 하나인 상태로 스택을 보유하고 있었습니다. <br/>
 React 스택을 얻고나서 React Native 개발을 접하면서 또 하나의 스택을 얻게 되었으며 보다 더 개발의 대한 자신감이 생기게 되었습니다. <br/>
