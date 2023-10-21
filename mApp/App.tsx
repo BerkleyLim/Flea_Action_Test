@@ -5,7 +5,6 @@
  * @format
  */
 import "react-native-gesture-handler";
-import React from 'react';
 import {QueryClient, QueryClientProvider, useQuery} from 'react-query';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -13,7 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Body from './src/page/component/Body'
 import Header from './src/page/component/common/Header'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, View, Text } from "react-native";
 
 const queryClient = new QueryClient();
 
@@ -46,7 +45,6 @@ function App(): JSX.Element {
         </ScrollView>
       </SafeAreaView>
     </QueryClientProvider>
-
   );
 }
 

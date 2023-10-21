@@ -1,4 +1,3 @@
-import React from 'react'
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 
 // CSS 꾸미기
