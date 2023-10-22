@@ -98,12 +98,15 @@
 $ git clone https://github.com/BerkleyLim/Flea_Auction_Test
 ```
 <br/>
+
 (2) 다음으로 npm으로 node_module 설치
 
 ```
 $ cd ./Flea_Auction_Test/mApp
 $ npm install
 ```
+
+<br>
 
 (3) 이후 npm run start(개발모드 - 배포모드x)<br/>
 - 다음은 a 누르면 android 모드, i 누르면 ios 모드로 실행된다.
@@ -116,6 +119,8 @@ $ npm run start;
 
 ```
 
+<br>
+
 (4) 이때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
 ```
 > Task :react-native-screens:compileDebugKotlin
@@ -125,7 +130,9 @@ $ npm run start;
 $ npm run start 실시하면 동작이 되어진다.
 ```
 
-(5) 아이폰 환경에서 빌드 후 실행 시킬 경우 아래와 같이 실시 (만약 아이폰 빌드가 안될경우 해당, 필자는 mac os가 없어서 정확한 테스트를 진행 못하고, 알고 있는 내용만 공유함)
+<br>
+
+(5) 아이폰 환경에서 오류 발생 시 아래와 같이 실시 (만약 아이폰 빌드가 안될경우 해당, 필자는 mac os가 없어서 정확한 테스트를 진행 못하고, 알고 있는 내용만 공유함)
 ```
 $ cd ios
 $ pod repo update
