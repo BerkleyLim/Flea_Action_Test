@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import MainHeader1 from './MainHeader1'
-import { useQuery } from 'react-query';
 import EventSource, { EventSourceListener } from 'react-native-sse';
 
 // CSS 꾸미기
@@ -84,11 +83,6 @@ const Body = () => {
 
     console.log(d)
     setDatas((prevData:any) => [...prevData, d]);
-    // const obj = [
-    //   ...datas,
-    //   d
-    // ]
-    // setDatas([...datas, d]);
     }
   }
 
@@ -107,7 +101,6 @@ const Body = () => {
 
   return (
     <View style={styles?.bodyStyle}>
-
       <MainHeader1></MainHeader1>
       <ScrollView
         ref={scrollViewRef}
