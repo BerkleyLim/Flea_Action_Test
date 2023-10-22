@@ -76,3 +76,5 @@ source.current.addEventListener("message", (e: any) => {
 > - 원래는 Redux나 Recoil로 활용 할 예정이였으나, SessionStorage와 LocalStorage가 안먹혀서 적용 포기
 > - RN에서는 두가지 storage가 지원을 안하는 것으로 판단하고, AsyncStorage 라이브러리 활용하여 새로고침 시 Data 유지를 위해 남겨놓음
 - 현재 NatigatorContainer는 시간 관계상 작업하지 못하고, 말그대로 사용자에게 보여주기 용도로만 개발을 완료하는 것으로 마무리!
+- 최종 완성된 코드 리팩토링 작업 실시
+- SSE를 Util로 나눔
