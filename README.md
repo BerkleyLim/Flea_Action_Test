@@ -34,11 +34,22 @@
 
 <br/><br/>
 
+
 ## DeadLine
 - <div style="font-size:1.5em;">
     23년 10월 <s style="font-color:gray; font-size:50%">20일(금)</s> 23(월)
     <span style="font-color:red; font-size:80%">(보다 더 깔끔한 개발을 위해 마감 날짜 연장)</span>
   </div>
+
+<br/><br/>
+
+## Preview (미리 보기)
+- 아래 사진은 화면의 대한 결과물 및 기능들을 추가한 내용물 입니다.
+- pull-to-refresh는 개발을 완성 하였으나, 스샷을 첨부하는데 어려워서 코드의 따른 기능을 확인하면 될 것 같습니다.
+<img width="200px" height="400px" src="./storage/readme/Screenshot_20231023_010814_mApp.jpg" alt="초기 진입시" />
+<img width="200px" height="400px" src="./storage/readme/Screenshot_20231023_010752_mApp.jpg" alt="화면1" />
+<img width="200px" height="400px" src="./storage/readme/Screenshot_20231023_010616_mApp.jpg" alt="화면2" />
+<img width="200px" height="400px" src="./storage/readme/Screenshot_20231023_010602_mApp.jpg" alt="화면3" />
 
 <br/><br/>
 
