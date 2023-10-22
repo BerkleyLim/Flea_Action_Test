@@ -27,12 +27,13 @@ const styles = StyleSheet.create({
   },
 })
 
-const MainHeader1 = () => {
+const MainHeader = ({children}:any) => {
   return (
     <View style={styles?.headerStyle}> 
-      <Text style={styles?.headerText}>가로 스크롤 영역 #1</Text>
+      {/* <Text style={styles?.headerText}>가로 스크롤 영역 #1</Text> */}
+      <Text style={styles?.headerText}>{children}</Text>
     </View>
   )
 }
 
-export default MainHeader1
+export default MainHeader
