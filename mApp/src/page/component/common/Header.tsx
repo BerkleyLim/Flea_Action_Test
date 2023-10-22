@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 // CSS 꾸미기
 const styles = StyleSheet.create({
   headerStyle : {
-    backgroundColor: "yellow",
+    backgroundColor: "#28D6C5",
     border: 1,
     borderStyle: "solid",
     width:'100%',
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 const Header = () => {
   return(
     <View style={styles?.headerStyle}>
-      <Text style={styles?.headerText}>Header</Text>
+      <Text style={styles?.headerText}>Flea Auction</Text>
     </View>
   )
 }
