@@ -5,32 +5,112 @@
  * @format
  */
 import "react-native-gesture-handler";
-// import PTRView from 'react-native-pull-to-refresh';
-import Body from './src/page/component/Body'
 import Header from './src/page/component/common/Header'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Dimensions, ScrollView, StyleSheet, View, Text, RefreshControl } from "react-native";
-import React from "react";
+import { Dimensions, ScrollView, StyleSheet, RefreshControl } from "react-native";
+import React, { useEffect, useState } from "react";
+import Main from "./src/page/component/main/Main";
+import EventSource, { EventSourceListener } from "react-native-sse";
+import { setItem, getItem } from './src/util/storage/AsyncStorageUtil';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+interface Data {
+  auctionId: number,
+  viewCount: number
+}
 
-function App(): JSX.Element {
-  const _refresh = () => {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {resolve()}, 2000)
-    })
+type sseParameter = {
+  sortData:Data[],
+  setSortData:any,
+  sortReverseData:Data[],
+  setSortReverseData:any
+}
+const sse = ({sortData, setSortData, sortReverseData, setSortReverseData}:sseParameter) => {
+  type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
+  const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
+  
+
+  const listener: EventSourceListener<FleaCustomEvents> = (e:any) => {
+    if (e.type === 'open') {
+      console.log('open')
+    } else if (e.type === 'message') {
+      console.log('message')
+    } else if (e.type === 'sse.contents.viewed') {
+      console.log('sse.contents.viewed, 현재 403 에러로 연결 불가능')
+    } else if (e.type === 'sse.auction_viewed') {
+      console.log('sse.auction_viewed')
+
+      const d = JSON.parse(e.data) as Data;
+
+      console.log(d)
+      setSortData((prevData:any) => [...prevData, d]);
+      setSortReverseData((prevData:any) => [...prevData, d]);
+
+      // 20개가 넘어가면 닫아버리기
+      if (sortData.length > 20) {
+        source.removeAllEventListeners();
+        source.close();
+        console.log("SSE close()")
+      }
+    } 
   }
-  const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  source.addEventListener("open", listener);
+  source.addEventListener("sse.auction_viewed", listener);
+  source.addEventListener("sse.contents_viewed", listener);
+  return () => {
+    source.close();
+  };
+}
+function App(): JSX.Element {
+  const [refreshing, setRefreshing] = React.useState(false);
+  const [sortData, setSortData] = useState<Data[]>([]);
+  const [sortReverseData, setSortReverseData] = useState<Data[]>([]);
+
+  // 이부분은 pull-to-refresh를 위한 함수 로직
+  const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
+
+    let tempData;
+    await AsyncStorage.getItem('sortData', (err, result) => {
+      console.log(result)
+      tempData = JSON.parse(result);
+    });
+    await AsyncStorage.removeItem('sortData');
+    console.log(tempData)
+    tempData = tempData.sort((a,b) => a.auctionId - b.auctionId);
+    setSortData(tempData);
+    
+    await AsyncStorage.getItem('sortReverseData', (err, result) => {
+      console.log(result)
+      tempData = JSON.parse(result);
+    });
+    await AsyncStorage.removeItem('sortReverseData');
+    console.log(tempData)
+    tempData = tempData.sort((a,b) => b.auctionId - a.auctionId)
+    setSortReverseData(tempData);
   }, []);
+
+
+  // 항시 실시간 업데이트용으로 조건 없이 그냥 함
+  useEffect (() => {
+    AsyncStorage.setItem('sortData',JSON.stringify(sortData));
+    AsyncStorage.setItem('sortReverseData',JSON.stringify(sortReverseData));
+  })
+
+
+  // 시작 할 때, sse를 킨다
+  useEffect(() => {
+    sse({sortData, setSortData, sortReverseData, setSortReverseData});
+  }, [])
+
 
   return (
     // Provider Setting
-    // <PTRView onRefresh={_refresh}>
+    // <RecoilRoot>
       <SafeAreaView>
         <ScrollView 
         contentContainerStyle={styles.scrollView}
@@ -38,10 +118,10 @@ function App(): JSX.Element {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
           <Header></Header>
-          <Body></Body>
+          <Main sortData={sortData} setSortData={setSortData} sortReverseData={sortReverseData} setSortReverseData={setSortReverseData} />
         </ScrollView>
       </SafeAreaView>
-    // </PTRView>
+    // </RecoilRoot>
   );
 }
 
@@ -50,17 +130,12 @@ let screenWidth = Dimensions.get('window').width;
 let screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // width: screenWidth,
-    // height: screenHeight,
-    // height: screenHeight,
     zIndex: 0,
     flex: 1,
   },
   scrollView: {
-    backgroundColor: 'orange',
-    // marginHorizontal: 20,
-    // height: screenHeight
+    backgroundColor: '#c8c8c8',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
