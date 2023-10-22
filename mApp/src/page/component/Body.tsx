@@ -3,7 +3,6 @@ import { Button, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-na
 import MainHeader1 from './MainHeader1'
 import { useQuery } from 'react-query';
 import EventSource, { EventSourceListener } from 'react-native-sse';
-// import RNEventSource from 'react-native-event-source';
 
 // CSS 꾸미기
 let screenWidth = Dimensions.get('window').width;
@@ -59,29 +58,12 @@ interface Data {
 }
 const Body = () => {
   const [datas, setDatas] = useState<Data[]>([]);
-  // const [datas, setDatas] = useState<any[]>();
 
 
   useEffect(() => {
-      // if (typeof (EventSource) !== "undefined") {
-      //   const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
-      //   source.onmessage = (e:any) => {
-      //         console.log("응답 메시지 : " + JSON.stringify(e))
-      //       console.log( e.data) 
-      //       console.log( e.type)
-          
-      //       const d = JSON.parse(e.data) as Data;
-          
-      //       setDatas((prevData: any) => [...prevData, d]);
-      //     };
-      //   } else {
-      //     console.log("Sorry, your browser does not support server-sent events...");
-      //   }
         
   type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
   const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
-  // const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
-  // const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
   
 
   const listener: EventSourceListener<FleaCustomEvents> = (e:any) => {
@@ -97,10 +79,6 @@ const Body = () => {
     } else if (e.type === 'sse.auction_viewed') {
       // ...
       console.log('sse.auction_viewed')
-          // console.log("응답 메시지 : ")
-          // console.log(e)
-    // console.log(e.data)
-    // console.log(e.type)
 
     const d = JSON.parse(e.data) as Data;
 
