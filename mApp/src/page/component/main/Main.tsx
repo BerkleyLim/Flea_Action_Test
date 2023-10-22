@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MainHeader1 from './MainHeader'
-import EventSource, { EventSourceListener } from 'react-native-sse';
 import MainBody from './MainBody';
 
 // CSS 꾸미기
-let screenWidth = Dimensions.get('window').width;
-let screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   bodyStyle: {
     border: 1,
@@ -65,8 +61,6 @@ type mainParameter = {
 }
 
 const Main = ({sortData, setSortData, sortReverseData, setSortReverseData}:mainParameter) => {
-  const scrollViewRef = useRef<ScrollView | null>(null);
-
   return (
     <View style={styles?.bodyStyle}>
       {/* <MainHeader1></MainHeader1> */}

@@ -1,4 +1,3 @@
-import React from 'react'
 import { StyleSheet, Text, View } from "react-native";
 
 
@@ -19,7 +18,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontSize:50,
     justifyContent:'center',
-    // flex: '1 0 0'
   },
 })
 

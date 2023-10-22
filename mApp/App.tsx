@@ -7,24 +7,28 @@
 import "react-native-gesture-handler";
 import Header from './src/page/component/common/Header'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Dimensions, ScrollView, StyleSheet, RefreshControl } from "react-native";
-import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, RefreshControl } from "react-native";
+import { useEffect, useState } from "react";
 import Main from "./src/page/component/main/Main";
 import EventSource, { EventSourceListener } from "react-native-sse";
-import { setItem, getItem } from './src/util/storage/AsyncStorageUtil';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React = require("react");
 
+// Data에 사용할 인터페이스 설정
 interface Data {
   auctionId: number,
   viewCount: number
 }
 
+// SSE 함수용 파라미터 타입 지정
 type sseParameter = {
   sortData:Data[],
   setSortData:any,
   sortReverseData:Data[],
   setSortReverseData:any
 }
+
+// 이 함수는 SSE 연동할 때 쓰는 환경 설정용 함수이다
 const sse = ({sortData, setSortData, sortReverseData, setSortReverseData}:sseParameter) => {
   type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
   const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
@@ -62,6 +66,8 @@ const sse = ({sortData, setSortData, sortReverseData, setSortReverseData}:ssePar
     source.close();
   };
 }
+
+// 이것은 React-native에 사용될 메인 함수
 function App(): JSX.Element {
   const [refreshing, setRefreshing] = React.useState(false);
   const [sortData, setSortData] = useState<Data[]>([]);
@@ -110,7 +116,6 @@ function App(): JSX.Element {
 
   return (
     // Provider Setting
-    // <RecoilRoot>
       <SafeAreaView>
         <ScrollView 
         contentContainerStyle={styles.scrollView}
@@ -121,13 +126,10 @@ function App(): JSX.Element {
           <Main sortData={sortData} setSortData={setSortData} sortReverseData={sortReverseData} setSortReverseData={setSortReverseData} />
         </ScrollView>
       </SafeAreaView>
-    // </RecoilRoot>
   );
 }
 
 // CSS 꾸미기
-let screenWidth = Dimensions.get('window').width;
-let screenHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     zIndex: 0,
