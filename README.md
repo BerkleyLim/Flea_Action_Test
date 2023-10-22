@@ -9,8 +9,8 @@
  <br/><br/>
 
 ## Client Name (고객사 명)
-- (주) 플리옥션 (Flea Auction. Inc)
-- 업종 : 미술 작품 판매 및 중계 (추정)
+- 발주업체 : (주) 플리옥션 (Flea Auction. Inc)
+- 업종 : 미술 작품 판매 및 중계업, 
 - Homepage : https://fleaauction.co/
 
  <br/><br/>
