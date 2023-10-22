@@ -5,46 +5,43 @@
  * @format
  */
 import "react-native-gesture-handler";
-import {QueryClient, QueryClientProvider, useQuery} from 'react-query';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
+// import PTRView from 'react-native-pull-to-refresh';
 import Body from './src/page/component/Body'
 import Header from './src/page/component/common/Header'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Dimensions, ScrollView, StyleSheet, View, Text } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, View, Text, RefreshControl } from "react-native";
+import React from "react";
 
-const queryClient = new QueryClient();
-
-const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
+  const _refresh = () => {
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {resolve()}, 2000)
+    })
+  }
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   return (
-  // 코드 설명 : 아래는 NavigationContainer 설정하여 각각 스크린마다 이동 시 설정한다.
-  // <QueryClientProvider client={queryClient}>
-    // // <SafeAreaView style={styles.appStyle}>
-    // <View style={{flex:1}}>
-    //   <ScrollView style={styles.scrollView}>
-    //     <Header></Header>
-    //     <NavigationContainer>
-    //       <Stack.Navigator initialRouteName="Body">
-    //       {/* <Stack.Navigator>  */}
-    //         <Stack.Screen name="Body" component={Body} />
-    //       </Stack.Navigator>
-    //     </NavigationContainer>
-    //   </ScrollView>
-    // </View>
-  // </QueryClientProvider>
- 
     // Provider Setting
-    <QueryClientProvider client={queryClient}> 
+    // <PTRView onRefresh={_refresh}>
       <SafeAreaView>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView 
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
           <Header></Header>
           <Body></Body>
         </ScrollView>
       </SafeAreaView>
-    </QueryClientProvider>
+    // </PTRView>
   );
 }
 
@@ -64,6 +61,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
     // marginHorizontal: 20,
     // height: screenHeight
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     fontSize: 42
