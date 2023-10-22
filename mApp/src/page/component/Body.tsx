@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 import { Button, Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import MainHeader1 from './MainHeader1'
-// import EventSource  from 'react-native-sse';
 import { useQuery } from 'react-query';
-import RNEventSource from 'react-native-event-source';
+import EventSource, { EventSourceListener } from 'react-native-sse';
+// import RNEventSource from 'react-native-event-source';
 
 // CSS 꾸미기
 let screenWidth = Dimensions.get('window').width;
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     width: '100%',
     height: 550,
-    zIndex:5
+    zIndex: 5
   },
   bodyText: {
     fontStyle: "italic",
@@ -58,33 +58,69 @@ interface Data {
   viewCount: number
 }
 const Body = () => {
-  const [datas, setDatas] = useState<Data[]>();
+  const [datas, setDatas] = useState<Data[]>([]);
+  // const [datas, setDatas] = useState<any[]>();
 
-  const source = useRef<RNEventSource>();
 
   useEffect(() => {
-    source.current = new RNEventSource("https://api.fleaauction.world/v2/sse/event");
-
-    try {
-      source.current.addEventListener("message", (e: any) => { 
-        console.log("응답시간" + JSON.stringify(e))
-        console.log( e.data) 
-        console.log( e.type)
-        const d = JSON.parse(e.data) as Data;
-
-        setDatas((prevData: any) => [...prevData, d]);
-      });
-      source.current.addEventListener("error", (e: any) => {
-        console.error("Connection error:", e.message, e.error);
-      });
+      // if (typeof (EventSource) !== "undefined") {
+      //   const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
+      //   source.onmessage = (e:any) => {
+      //         console.log("응답 메시지 : " + JSON.stringify(e))
+      //       console.log( e.data) 
+      //       console.log( e.type)
+          
+      //       const d = JSON.parse(e.data) as Data;
+          
+      //       setDatas((prevData: any) => [...prevData, d]);
+      //     };
+      //   } else {
+      //     console.log("Sorry, your browser does not support server-sent events...");
+      //   }
+        
+  type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
+  const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
+  // const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
+  // const source = new EventSource("https://api.fleaauction.world/v2/sse/event");
   
-    } catch (e) { 
-      console.log(e) 
+
+  const listener: EventSourceListener<FleaCustomEvents> = (e:any) => {
+    if (e.type === 'open') {
+      // connection opened
+      console.log('open')
+    } else if (e.type === 'message') {
+      // ...
+      console.log('message')
+    } else if (e.type === 'sse.contents.viewed') {
+      // ...
+      console.log('sse.contents.viewed, 현재 403 에러로 연결 불가능')
+    } else if (e.type === 'sse.auction_viewed') {
+      // ...
+      console.log('sse.auction_viewed')
+          // console.log("응답 메시지 : ")
+          // console.log(e)
+    // console.log(e.data)
+    // console.log(e.type)
+
+    const d = JSON.parse(e.data) as Data;
+
+    console.log(d)
+    setDatas((prevData:any) => [...prevData, d]);
+    // const obj = [
+    //   ...datas,
+    //   d
+    // ]
+    // setDatas([...datas, d]);
     }
- 
-    return () => {
-      source.current?.close();
-    };
+  }
+
+  source.addEventListener("open", listener);
+  source.addEventListener("sse.auction_viewed", listener);
+  source.addEventListener("sse.contents_viewed", listener);
+  return () => {
+    // source.removeAllListeners();
+    // source.close();
+  };
   }, [])
 
 
@@ -92,9 +128,9 @@ const Body = () => {
   console.log(datas)
 
   return (
-    <View style={styles?.bodyStyle}> 
+    <View style={styles?.bodyStyle}>
 
-      <MainHeader1></MainHeader1> 
+      <MainHeader1></MainHeader1>
       <ScrollView
         ref={scrollViewRef}
         horizontal={true}
@@ -102,14 +138,8 @@ const Body = () => {
         onMomentumScrollEnd={() => { console.log('Scrolling is End') }}
         style={styles?.scrollContainer}
       >
-        {/* <Button title={"1"} onPress={() => {setIsChange(!isChange)}}>
-          <View style={styles?.scrollContainerView}>
-            <Text style={styles?.scrollCentainerText}>1</Text>
-            <Text style={styles?.scrollCentainerText}>1</Text>
-          </View>
-        </Button> */}
         {
-          datas?.map((d, index) => 
+          datas?.map((d, index) =>
             <View key={index} style={styles?.scrollContainerView}>
               <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
               <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
@@ -133,7 +163,7 @@ const Body = () => {
           )
         }
       </ScrollView>
-      <MainHeader1></MainHeader1>  
+      <MainHeader1></MainHeader1>
     </View>
   )
 }
