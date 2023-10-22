@@ -70,11 +70,16 @@ const MainBody = ({data}:mainParameter) => {
       style={styles?.scrollContainer}
     >
       {
-        data?.filter(() => data.length <= 20).map((d, index) =>
-          <View key={index} style={styles?.scrollContainerView}>
+        data?.map((d, index) =>
+        <View key={index}>
+        {
+          index <= 20 &&
+          <View style={styles?.scrollContainerView}>
             <Text style={styles?.scrollCentainerText}>{`auctionId\n${d?.auctionId}`}</Text>
             <Text style={styles?.scrollCentainerText}>{`viewCount\n${d?.viewCount}`}</Text>
           </View>
+        }
+        </View>
         )
       }
     </ScrollView>

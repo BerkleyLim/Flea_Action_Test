@@ -22,20 +22,20 @@ interface Data {
 
 // SSE 함수용 파라미터 타입 지정
 type sseParameter = {
-  sortData:Data[],
-  setSortData:any,
-  sortReverseData:Data[],
-  setSortReverseData:any
+  setSortData: any,
+  setSortReverseData: any,
+  closeCount: Number
 }
 
 // 이 함수는 SSE 연동할 때 쓰는 환경 설정용 함수이다
-const sse = ({sortData, setSortData, sortReverseData, setSortReverseData}:sseParameter) => {
+
+const sse = ({ setSortData, setSortReverseData, closeCount }: sseParameter) => {
   // 여기서는 SSE Event Type과 맞춰야 하므로 custom을 써야한다.
   type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
   const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
-  
 
-  const listener: EventSourceListener<FleaCustomEvents> = (e:any) => {
+
+  const listener: EventSourceListener<FleaCustomEvents> = (e: any) => {
     if (e.type === 'open') {
       // SSE를 연다
       console.log('open')
@@ -56,16 +56,16 @@ const sse = ({sortData, setSortData, sortReverseData, setSortReverseData}:ssePar
       console.log(d)
 
       // state 값을 저장하는 로직, 여기서는 오름차순, 내림차순 데이터를 저장한다.
-      setSortData((prevData:any) => [...prevData, d]);
-      setSortReverseData((prevData:any) => [...prevData, d]);
+      setSortData((prevData: any) => [...prevData, d]);
+      setSortReverseData((prevData: any) => [...prevData, d]);
 
       // 20개가 넘어가면 닫아버리기
-      if (sortData.length > 20) {
-        source.removeAllEventListeners();
-        source.close();
-        console.log("SSE close()")
-      }
-    } 
+      // if (closeCount > 20) {
+      //   source.removeAllEventListeners();
+      //   source.close();
+      //   console.log("SSE close()")
+      // }
+    }
   }
 
   source.addEventListener("open", listener);
@@ -97,9 +97,9 @@ function App(): JSX.Element {
     });
     await AsyncStorage.removeItem('sortData');
     console.log(tempData)
-    tempData = tempData.sort((a,b) => a.auctionId - b.auctionId);
+    tempData = tempData.sort((a, b) => a.auctionId - b.auctionId);
     setSortData(tempData);
-    
+
     // 내림 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
     await AsyncStorage.getItem('sortReverseData', (err, result) => {
       console.log(result)
@@ -107,36 +107,61 @@ function App(): JSX.Element {
     });
     await AsyncStorage.removeItem('sortReverseData');
     console.log(tempData)
-    tempData = tempData.sort((a,b) => b.auctionId - a.auctionId)
+    tempData = tempData.sort((a, b) => b.auctionId - a.auctionId)
     setSortReverseData(tempData);
   }, []);
 
 
   // 항시 실시간 업데이트용으로 조건 없이 그냥 함
-  useEffect (() => {
-    AsyncStorage.setItem('sortData',JSON.stringify(sortData));
-    AsyncStorage.setItem('sortReverseData',JSON.stringify(sortReverseData));
-  })
+  useEffect(() => {
+    // 여기서 viewCount 갱신 시작
+    // 오름차순 데이터 갱신
+    if (!!sortData && sortData.length > 0) {
+      let data1 = sortData;
+      for (let index = sortData.length - 2; index >= 0; index--) {
+        if (data1[sortData.length - 1].auctionId === data1[index].auctionId) {
+          data1[index].viewCount = sortData[sortData.length - 1].viewCount;
+        }
+        setSortData(data1);
+      }
+    }
+    AsyncStorage.setItem('sortData', JSON.stringify(sortData));
+  }, [sortData])
+
+  useEffect(() => {
+    // 내림차순 데이터 갱신
+    if (!!sortReverseData && sortReverseData.length > 0) {
+      let data2 = sortReverseData;
+      for (let index = sortReverseData.length - 2; index >= 0; index--) {
+        if (data2[sortReverseData.length - 1].auctionId === data2[index].auctionId) {
+          data2[index].viewCount = sortReverseData[sortReverseData.length - 1].viewCount;
+        }
+        setSortReverseData(data2);
+      }
+    }
+    AsyncStorage.setItem('sortReverseData', JSON.stringify(sortReverseData));
+  }, [sortReverseData])
 
 
   // 시작 할 때, sse를 킨다
   useEffect(() => {
-    sse({sortData, setSortData, sortReverseData, setSortReverseData});
+    let closeCount = sortData.length;
+    sse({ setSortData, setSortReverseData, closeCount });
   }, [])
 
 
   return (
     // Provider Setting
-      <SafeAreaView>
-        <ScrollView 
+    <SafeAreaView>
+      <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
-          <Header></Header>
-          <Main sortData={sortData} setSortData={setSortData} sortReverseData={sortReverseData} setSortReverseData={setSortReverseData} />
-        </ScrollView>
-      </SafeAreaView>
+        <Header></Header>
+        <Main sortData={sortData} setSortData={setSortData} sortReverseData={sortReverseData} setSortReverseData={setSortReverseData} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
