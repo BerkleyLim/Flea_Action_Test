@@ -10,70 +10,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, RefreshControl } from "react-native";
 import { useEffect, useState } from "react";
 import Main from "./src/page/component/main/Main";
-import EventSource, { EventSourceListener } from "react-native-sse";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React = require("react");
+import SSE from "./src/util/SSE";
 
 // Data에 사용할 인터페이스 설정
 interface Data {
   auctionId: number,
   viewCount: number
-}
-
-// SSE 함수용 파라미터 타입 지정
-type sseParameter = {
-  setSortData: any,
-  setSortReverseData: any,
-  closeCount: Number
-}
-
-// 이 함수는 SSE 연동할 때 쓰는 환경 설정용 함수이다
-
-const sse = ({ setSortData, setSortReverseData, closeCount }: sseParameter) => {
-  // 여기서는 SSE Event Type과 맞춰야 하므로 custom을 써야한다.
-  type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
-  const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
-
-
-  const listener: EventSourceListener<FleaCustomEvents> = (e: any) => {
-    if (e.type === 'open') {
-      // SSE를 연다
-      console.log('open')
-    } else if (e.type === 'message') {
-      // event type이 message일 경우 수행
-      console.log('message')
-    } else if (e.type === 'sse.contents_viewed') {
-      // event type이 sse.contents_viewed 일경우 수행
-      // 현재 LogCat으로 확인할 경우 로그는 돌아가지만, 인증을 넣어야 수행 가능하다.
-      console.log('sse.contents.viewed, 현재 403 에러로 연결 불가능')
-    } else if (e.type === 'sse.auction_viewed') {
-      // event type이 sse.auction_viewed일 경우 수행
-      // 이부분이 핵심이 되는 부분이다.
-      console.log('sse.auction_viewed')
-
-      const d = JSON.parse(e.data) as Data;
-
-      console.log(d)
-
-      // state 값을 저장하는 로직, 여기서는 오름차순, 내림차순 데이터를 저장한다.
-      setSortData((prevData: any) => [...prevData, d]);
-      setSortReverseData((prevData: any) => [...prevData, d]);
-
-      // 20개가 넘어가면 닫아버리기
-      // if (closeCount > 20) {
-      //   source.removeAllEventListeners();
-      //   source.close();
-      //   console.log("SSE close()")
-      // }
-    }
-  }
-
-  source.addEventListener("open", listener);
-  source.addEventListener("sse.auction_viewed", listener);
-  source.addEventListener("sse.contents_viewed", listener);
-  return () => {
-    source.close();
-  };
 }
 
 // 이것은 React-native에 사용될 메인 함수
@@ -112,7 +56,7 @@ function App(): JSX.Element {
   }, []);
 
 
-  // 항시 실시간 업데이트용으로 조건 없이 그냥 함
+  // sortData 저장
   useEffect(() => {
     // 여기서 viewCount 갱신 시작
     // 오름차순 데이터 갱신
@@ -127,8 +71,10 @@ function App(): JSX.Element {
     }
     AsyncStorage.setItem('sortData', JSON.stringify(sortData));
   }, [sortData])
-
+  
+  // sortReverseData 저장
   useEffect(() => {
+    // 여기서 viewCount 갱신 시작
     // 내림차순 데이터 갱신
     if (!!sortReverseData && sortReverseData.length > 0) {
       let data2 = sortReverseData;
@@ -145,8 +91,7 @@ function App(): JSX.Element {
 
   // 시작 할 때, sse를 킨다
   useEffect(() => {
-    let closeCount = sortData.length;
-    sse({ setSortData, setSortReverseData, closeCount });
+    SSE({ setSortData, setSortReverseData });
   }, [])
 
 
