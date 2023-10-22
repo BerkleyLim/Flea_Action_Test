@@ -122,7 +122,7 @@ $ npm run start;
 
 <br>
 
-(4) 이때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
+(4) 이때 안드로이드 환경에서 실행 시킬 때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
 ```
 > Task :react-native-screens:compileDebugKotlin
 여기서 build 실패하여 시스템이 종료 될 수 있다.
