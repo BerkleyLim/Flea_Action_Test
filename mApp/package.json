@@ -28,6 +28,7 @@
     "react-native-sse": "^1.2.0",
     "react-query": "^3.39.3",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "sse": "^0.0.8"
   },
   "devDependencies": {
