@@ -20,6 +20,7 @@
 - 아주 기초적이지만, React Native와 Back-End 통신을 하기 위해 숙련도를 올린다.
 - Android WebView 및 Native와 함께 사용하는 Hybrid App 외적으로 React Native 스택을 쌓는다.
 - 마지막으로, 개발 숙련도를 올리면서 고객의 요구사항에 알맞게 수행하여 고객에게 환영받는 개발자로 목표로 한다.
+- SSE와 pull-to-refresh의 대한 기능의 대해 학습을 진행한다.
 
 <br/><br/>
 
@@ -28,6 +29,8 @@
 - SSE 기법으로 이용하여 옥션으로 판매 하는 형식으로 실시간 UI 갱신을 원한다.
 - 전 단계인 React Native와 Server와 통신하여 해당 로그를 읽고, 로그의 토대로 데이터 삽입
 - 이와 동시에 SSE 기법과 React Native의 이해도와 활용하는 방법을 학습을 요망
+- SSE 연동 후, 조회 수 갱신 및 Pull-To-Refresh의 대한 기능 활용 요구
+- React의 대한 실력을 통해 프로젝트 파트너로 함께 갈 수 있는지의 대해 체크
 
 <br/><br/>
 
@@ -44,14 +47,35 @@
 - Node Version : 16.18.0 (가급적 동일한 버전 사용 추천 - 다른 버전일 경우 설정에 맞춰야 한다.)
 - App : React Native
 - Gradle : 7.5.1
-- Library : react
+- Library : react, asyncStorage, react-native-sse
 
 <img src="./storage/readme/environment.jpg" alt="개발 환경 상세" />
 
 
 <br/><br/>
 
-## Gettings Start (차후, 꾸준히 업데이트 예정) 
+## Gettings Start
+<h3>사전 준비</h3>
+- 사전 준비는 Google을 검색하여 설치하는 방법의 대해 검색 후 실행한다.
+<div>
+  <h4>공통</h4>
+  <ul>
+    <li>node js 설치 (필자는 16.18.0 사용)</li>
+  </ul>
+  <h4>Android OS 셋팅</h4>
+  <ul>
+    <li>Java 11 설치</li>
+    <li>Gradle 설치</li>
+    <li>Android Studio 설치 이후, SDK 설치</li>
+  </ul>
+  <h4>IOS 환경 셋팅(MAC OS 보유 필수)</h4>
+  <ul>
+    <li>Xcode 설치</li>
+    <li>Watchman 설치</li>
+    <li>Cocoapods 설치</li>
+  </ul>
+</div>
+
 <h3>React Native 빌드 후 실행 방법 (Local - Debugger 모드)</h3>
 - 현재 저는 MAC OS 장비가 없어서 IOS빌드를 작성하지 못했습니다. 이에 양해 바랍니다.<br/>
 (1) 먼저 clone을 받는다.
@@ -67,18 +91,37 @@ $ cd ./Flea_Auction_Test/mApp
 $ npm install
 ```
 
-(3) 이후 npm run start(개발모드 - 배포모드x)
+(3) 이후 npm run start(개발모드 - 배포모드x)<br/>
+- 다음은 a 누르면 android 모드, i 누르면 ios 모드로 실행된다.
 
 ```
-$ npm run start
+$ npm run start;
+
+<안드로이드 : a>
+<아이폰 : i>
+
 ```
 
 (4) 이때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
+```
+> Task :react-native-screens:compileDebugKotlin
+여기서 build 실패하여 시스템이 종료 될 수 있다.
+이때, 무시하고 다시 한번 (3)과정으로 돌아가서
+
+$ npm run start 실시하면 동작이 되어진다.
+```
+
+(5) 아이폰 환경에서 빌드 후 실행 시킬 경우 아래와 같이 실시 (만약 안될경우 해당, 필자는 mac os가 없어서 알고 있는 내용만 공유함)
+```
+$ cd ios
+$ pod repo update
+$ pod install
+```
 
 <br/><br/>
 
 ## History
-- history 폴더의 README.md를 참조하세요. [링크]("./history")
+- history 폴더의 README.md를 참조하세요. [링크]("https://github.com/BerkleyLim/Flea_Auction_Test/tree/main/history")
 
 <br/><br/>
 
