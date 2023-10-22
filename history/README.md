@@ -36,6 +36,8 @@
 - SSE 연동까지 성공 이후, 코드 정리와 component 분할까지 나누고, 불필요한 패키지도 정리 예정
 - NavigatorContainer 버그 걸린 부분의 대해 하나하나 잡아가기 
 > - 보통 서비스 작업 진행 시 Android Native App Intent 역할, React 웹 환경에서 React-Router-Dom 역할로 진행할 것이다.
+- RN 초창기 패키지 설치시 안드로이드 부분 버그 이슈 해결 과정
+> - https://yoonho-devlog.tistory.com/m/165
 
 <br/><br/>
 
@@ -62,4 +64,12 @@ source.current.addEventListener("message", (e: any) => {
 ```
 - 마지막 아래의 링크 참조 결과 React Native 에서 만든 SSE 기능을 Android 환경에서는 따로 손을 봐주지 않으면 정상 작동 되지 않는 것으로 확인
 - 링크 :  https://github.com/facebook/react-native/issues/28835
+- 링크2 : https://reactnative.dev/docs/network
 - Android 환경에서 네트워크 통신은 http 프로토콜 요청이 기본적으로 막혀있음
+- 해결 링크 : https://velog.io/@modac42asdfadsf/React-native-SSE-%EC%97%B0%EA%B2%B0
+
+# 22일
+- SSE 연동 성공 : Event Type을 sse.auction_viewed 로 설정하여 메시지를 받을 수 있음
+- 현재 View 단에서 SSE 에서 받은 데이터를 활용하여 사용자 측에서 화면을 보여 줄 수 있음
+- React Native Gettings Start 및 자습서를 참조하여 Pull-To-Refresh 기능 추가
+- 마지막으로, 사용자 측에서 정렬을 활용하여 사용자에게 보여주기
