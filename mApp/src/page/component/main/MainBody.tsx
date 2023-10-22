@@ -72,8 +72,8 @@ const MainBody = ({data}:mainParameter) => {
       {
         data?.filter(() => data.length <= 20).map((d, index) =>
           <View key={index} style={styles?.scrollContainerView}>
-            <Text style={styles?.scrollCentainerText}>{d?.auctionId}</Text>
-            <Text style={styles?.scrollCentainerText}>{d?.viewCount}</Text>
+            <Text style={styles?.scrollCentainerText}>{`auctionId\n${d?.auctionId}`}</Text>
+            <Text style={styles?.scrollCentainerText}>{`viewCount\n${d?.viewCount}`}</Text>
           </View>
         )
       }
