@@ -25,8 +25,10 @@ import com.facebook.react.modules.network.NetworkingModule;
 import okhttp3.OkHttpClient;
 
 /**
- * Class responsible of loading Flipper inside your React Native application. This is the debug
- * flavor of it. Here you can add your own plugins and customize the Flipper setup.
+ * Class responsible of loading Flipper inside your React Native application.
+ * This is the debug
+ * flavor of it. Here you can add your own plugins and customize the Flipper
+ * setup.
  */
 public class ReactNativeFlipper {
   public static void initializeFlipper(Context context, ReactInstanceManager reactInstanceManager) {
@@ -38,15 +40,19 @@ public class ReactNativeFlipper {
       client.addPlugin(new SharedPreferencesFlipperPlugin(context));
       client.addPlugin(CrashReporterPlugin.getInstance());
 
-      NetworkFlipperPlugin networkFlipperPlugin = new NetworkFlipperPlugin();
-      NetworkingModule.setCustomClientBuilder(
-          new NetworkingModule.CustomClientBuilder() {
-            @Override
-            public void apply(OkHttpClient.Builder builder) {
-              builder.addNetworkInterceptor(new FlipperOkhttpInterceptor(networkFlipperPlugin));
-            }
-          });
-      client.addPlugin(networkFlipperPlugin);
+      // 여기는 디버그 모드 시, sse 이벤트 처리를 가로채가기 때문에 통신이 안되어 주석으로 제거
+      // 참조 : https://velog.io/@modac42asdfadsf/React-native-SSE-%EC%97%B0%EA%B2%B0
+
+      // NetworkFlipperPlugin networkFlipperPlugin = new NetworkFlipperPlugin();
+      // NetworkingModule.setCustomClientBuilder(
+      // new NetworkingModule.CustomClientBuilder() {
+      // @Override
+      // public void apply(OkHttpClient.Builder builder) {
+      // builder.addNetworkInterceptor(new
+      // FlipperOkhttpInterceptor(networkFlipperPlugin));
+      // }
+      // });
+      // client.addPlugin(networkFlipperPlugin);
       client.start();
 
       // Fresco Plugin needs to ensure that ImagePipelineFactory is initialized
