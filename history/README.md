@@ -72,4 +72,7 @@ source.current.addEventListener("message", (e: any) => {
 - SSE 연동 성공 : Event Type을 sse.auction_viewed 로 설정하여 메시지를 받을 수 있음
 - 현재 View 단에서 SSE 에서 받은 데이터를 활용하여 사용자 측에서 화면을 보여 줄 수 있음
 - React Native Gettings Start 및 자습서를 참조하여 Pull-To-Refresh 기능 추가
-- 마지막으로, 사용자 측에서 정렬을 활용하여 사용자에게 보여주기
+- 마지막으로, 사용자 측에서 정렬을 활용하여 사용자에게 보여주는 화면 띄는 작업 성공
+> - 원래는 Redux나 Recoil로 활용 할 예정이였으나, SessionStorage와 LocalStorage가 안먹혀서 적용 포기
+> - RN에서는 두가지 storage가 지원을 안하는 것으로 판단하고, AsyncStorage 라이브러리 활용하여 새로고침 시 Data 유지를 위해 남겨놓음
+- 현재 NatigatorContainer는 시간 관계상 작업하지 못하고, 말그대로 사용자에게 보여주기 용도로만 개발을 완료하는 것으로 마무리!
