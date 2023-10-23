@@ -122,7 +122,7 @@ $ npm run start;
 
 <br>
 
-(4-1) 안드로이드 빌드시 android/local.properties 파일이 없을 경우 local.properties 파일 생성하고, 내용은 src.dir = "본인 sdk 위치" 를 추가한다.
+(4-1) 안드로이드 빌드시 android/local.properties 파일이 없을 경우 local.properties 파일 생성하고, 내용은 src.dir = "본인 sdk 위치" 를 추가한다. => clone .gitignore 셋팅 때문에 시 없을것이다(본인 pc정보가 담긴 내용이라서 셋팅한 것으로 추정)
 
 (4-2) 이때 안드로이드 환경에서 실행 시킬 때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
 ```
