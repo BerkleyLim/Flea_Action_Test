@@ -122,7 +122,9 @@ $ npm run start;
 
 <br>
 
-(4) 이때 안드로이드 환경에서 실행 시킬 때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
+(4-1) 안드로이드 빌드시 android/local.properties 파일이 없을 경우 local.properties 파일 생성하고, 내용은 src.dir = "본인 sdk 위치" 를 추가한다.
+
+(4-2) 이때 안드로이드 환경에서 실행 시킬 때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
 ```
 > Task :react-native-screens:compileDebugKotlin
 여기서 build 실패하여 시스템이 종료 될 수 있다.
