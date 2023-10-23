@@ -119,21 +119,18 @@ $ npm run start;
 <아이폰 : i>
 
 ```
-
 <br>
 
-(4-1) 안드로이드 빌드시 android/local.properties 파일이 없을 경우 local.properties 파일 생성하고, 내용은 src.dir = "본인 sdk 위치" 를 추가한다. => clone .gitignore 셋팅 때문에 시 없을것이다(본인 pc정보가 담긴 내용이라서 셋팅한 것으로 추정)
-
-(4-2) 이때 안드로이드 환경에서 실행 시킬 때 gradle이 kotlin build 실패가 나온디면 무시하고 다시 (3)번 과정을 걸칩니다.
+(4) 안드로이드 빌드 에러시 index.android.bundle이 갱신되지 않아 에러가 발생할 수 있음.
+따라서, 아래와 같이 실행 or 이 프로젝트에서는 repository 제거 후 (1) 과정 부터 다시 시작
 ```
-> Task :react-native-screens:compileDebugKotlin
-여기서 build 실패하여 시스템이 종료 될 수 있다.
-이때, 무시하고 다시 한번 (3)과정으로 돌아가서
-
-$ npm run start 실시하면 동작이 되어진다.
+$ mkdir android/app/src/main/assets  # 실제로 파일이 존재하므로 assets는 스킵 가능
+$ cd android
+$ gradle clean
+$ cd ..
+$ react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+$ npm run start
 ```
-
-<br>
 
 (5) 아이폰 환경에서 오류 발생 시 아래와 같이 실시 (만약 아이폰 빌드가 안될경우 해당, 필자는 mac os가 없어서 정확한 테스트를 진행 못하고, 알고 있는 내용만 공유함)
 ```
