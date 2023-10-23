@@ -59,7 +59,6 @@ function App(): JSX.Element {
   // sortData 저장
   useEffect(() => {
     // 여기서 viewCount 갱신 시작
-    // 오름차순 데이터 갱신
     if (!!sortData && sortData.length > 0) {
       let data1 = sortData;
       for (let index = sortData.length - 2; index >= 0; index--) {
@@ -75,7 +74,6 @@ function App(): JSX.Element {
   // sortReverseData 저장
   useEffect(() => {
     // 여기서 viewCount 갱신 시작
-    // 내림차순 데이터 갱신
     if (!!sortReverseData && sortReverseData.length > 0) {
       let data2 = sortReverseData;
       for (let index = sortReverseData.length - 2; index >= 0; index--) {
