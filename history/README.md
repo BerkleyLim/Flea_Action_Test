@@ -78,3 +78,38 @@ source.current.addEventListener("message", (e: any) => {
 - 현재 NatigatorContainer는 시간 관계상 작업하지 못하고, 말그대로 사용자에게 보여주기 용도로만 개발을 완료하는 것으로 마무리!
 - 최종 완성된 코드 리팩토링 작업 실시
 - SSE를 Util로 나눔
+
+## 23일
+- 안드로이드 실행시 빌드 에러 및 화면 멈추는 현상 해결
+- Redux 적용 시도 (React Native TS 기반으로)
+- asyncStorage 기법으로 디바이스 내에 저장하는 것을 메모리로 저장하는 것으로 사용
+- 기존 React에서 잘 돌아가는 코드가 React Native에 넣을 때 react-dom, redux-persist 저장소 동기화 에러 발생
+```
+&platform=android&dev=true&minify=false&app=com.mapp&modulesOnly=false
+&runModule=true:27008 redux-persist failed to create sync storage.
+falling back to noop storage.
+```
+
+## 24일
+- Redux 적용
+- redux-persist 6.0.0 -> 5.10.0 다운그레이드
+- 이 경우, 버전을 높이면 AsyncStorage로도 어림도 없음
+- 고 버전일 수록 문제가 많음
+- 링크 : https://github.com/rt2zz/redux-persist/issues/1208
+- reduxjs-toolkit-persist 패키지 설치후 적용해보기
+```
+
+```
+A non-serializable value was detected in an action, in th e path" 'register'.
+
+
+```
+
+- 아래와 같은 코드 추가
+
+```
+// 다음이 middleware 추가 코드이다.
+        middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+        // 기본 값이 true지만 배포할때 코드를 숨기기 위해서 false로 변환하기 쉽게 설정에 넣어놨다.
+        devTools: true,
+```
