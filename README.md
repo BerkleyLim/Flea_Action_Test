@@ -80,7 +80,8 @@
 
 - Issue 2
 - 상태 관리(state)를 디바이스 저장 방식 => 메모리 저장 방식으로 해달라.
-=> 현재, React 환경에서 JS 기법으로 사용한 방식으로 Redux로 셋팅을 하였으나, React Native TS 방식으로 사용할 경우 호환성 문제와 지원하지 않는 라이브러리 에러로 현재 해결중
+=> 현재, React 환경에서 JS 기법으로 사용한 방식으로 Redux로 셋팅을 하였으나, React Native TS 방식으로 사용 이후 redux-persist 문제점 발생 (noon에러 발생), 기존에 redux 라이브러리에 제공하는 SessionStorage, LocalStorage 방식 지원 안됨
+- AsyncStorage 방식으로 사용하고자 하였지만 이마저도 에러 발생으로 해결점을 찾고 있음
 
 
 ## Gettings Start
@@ -168,7 +169,7 @@ $ pod install
 > - 당시, Typescript와 React Native를 한번도 다뤄보지 않아 보류상태로 남겨 두었지만, Typescript와 친해지고 React 숙련도를 더 올린 이후 React Native를 시작하기로 마음 먹은 상태였습니다.
 > - 이번 플리옥션 고객사 프로젝트를 통해 React Native를 첫 프로젝트로 시작하게 되었으며 SSE 역시 처음으로 개발을 하여 React Query로 개발을 하고자 하였으나 서버 캐쉬를 이용하여 사용이 가능하며, 실시간 비동기 방식으로 API를 호출하는 방식으로 사용하는 것에 어울려 SSE 환경에서는 적합하지 못한 환경이라고 판단하였습니다.
 > - 따라서 Redux나 Recoil을 통해 state 값을 유지해주는 또하나의 상태관리 기법을 활용을 진행 해 왔으며, SSE에 저장하는 것이 적합하다고 판단을 하였지만, Session Storage, Local Storage를 사용하기에는 제한적이기 때문에 활용하지 않고, state 값 대신 asyncStorage 기법을 활용하여 데이터 상태 유지를 진행해왔습니다.
-> - Web 환경에서의 React에서 Redux나 Recoil, React-Query를 활용을 해보았으나 데이터 값 유지 및 실시간 동기 면에서 프로젝트의 따라 적합한 곳에 적용을 하는것이 좋다고 생각이 들며, React Native가 어느정도 익숙해질때 쯤이면 상태관리 활용을 도전해보고 싶습니다.
+> - Web 환경에서의 React에서 Redux나 Recoil, React-Query를 활용을 해보았으나 데이터 값 유지 및 실시간 동기 면에서 프로젝트의 따라 적합한 곳에 적용을 하는것이 좋다고 생각이 들며, React Native가 어느정도 익숙해질때 쯤이면 하기로 결정 하였으나 호환성과 꾸준한 버전업그레이드로 Redux Toolkit 사용법이랑 React에서 사용 가능한 storage기법 및 react-persist 사용이 가능한 부분에서 RN 환경버전에 제한된 환경에서 각각 사용법을 터득하고 숙련도를 기르고 싶습니다.
 <br/>
 
 <h3>2. Flutter 로 앱개발 경험이 있다면, 상태관리는 어떤 것들을 사용해 보았으며, 가장 선호하는 방법은 무엇인지, 그리고 그 이유는 무엇입니까?</h3>
