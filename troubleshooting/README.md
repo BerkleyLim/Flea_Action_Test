@@ -37,7 +37,7 @@ $ react-native run-android
 
 
 <strong>해결된 화면</strong>
-<img src="Screenshot_20231023_010814_mApp.jpg" width='300px' height='600px' alt="해결책" />
+<img src="../readme/Screenshot_20231023_010814_mApp.jpg" width='300px' height='600px' alt="해결책" />
 
 
 (3) ios 관련 에러
