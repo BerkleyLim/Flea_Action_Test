@@ -21,7 +21,6 @@ $ npm install # 이 명령어로 라이브러리 설치
 <img width='300px' height='600px' src='Screenshot_20231023_192630_mApp.jpg' alt="이상 화면 목록">
 
 <h4>Solution</h4>
-
 (2-1) 아래와 같이 명령어 실행
 
 ```
@@ -35,6 +34,10 @@ $ react-native run-android
 
 (2-2) 기존 소스코드 다시 지우고 다시 실행
 이 경우 다시 제거하고 다시 빌드하기
+
+
+<strong>해결된 화면</strong>
+<img src="Screenshot_20231023_010814_mApp.jpg" width='300px' height='600px' alt="해결책" />
 
 
 (3) ios 관련 에러
