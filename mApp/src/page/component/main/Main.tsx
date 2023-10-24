@@ -1,6 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import MainHeader1 from './MainHeader'
 import MainBody from './MainBody';
+import { useSelector } from 'react-redux';
 
 // CSS 꾸미기
 const styles = StyleSheet.create({
@@ -55,19 +56,20 @@ interface Data {
 
 type mainParameter = {
   sortData:Data[],
-  setSortData:any,
   sortReverseData:Data[],
-  setSortReverseData:any
 }
+const Main = () => {
+  const sortData = useSelector((state:any) => state.sortData)
+  const sortReverseData = useSelector((state:any) => state.sortReverseData)
 
-const Main = ({sortData, setSortData, sortReverseData, setSortReverseData}:mainParameter) => {
+  // console.log(sortData)
+  // console.log(sortReverseData)
   return (
     <View style={styles?.bodyStyle}>
-      {/* <MainHeader1></MainHeader1> */}
       <MainHeader1>가로 스크롤 영역 #1</MainHeader1>
-      <MainBody data={sortData} setData={setSortData}></MainBody>
+      <MainBody data={sortData}></MainBody>
       <MainHeader1>가로 스크롤 영역 #2</MainHeader1>
-      <MainBody data={sortReverseData} setData={setSortReverseData}></MainBody>
+      <MainBody data={sortReverseData}></MainBody>
       <MainHeader1></MainHeader1>
     </View>
   )

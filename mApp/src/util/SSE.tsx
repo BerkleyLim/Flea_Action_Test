@@ -1,24 +1,17 @@
 import EventSource, { EventSourceListener } from "react-native-sse";
+import { SortDataState, addSortData } from "../redux/redux/action/sortData";
+import { SortReverseDataState, addSortReverseData } from "../redux/redux/action/sortReverseData";
 
-// Data에 사용할 인터페이스 설정
-interface Data {
-  auctionId: number,
-  viewCount: number
-}
-
-// SSE 함수용 파라미터 타입 지정
-type sseParameter = {
-  setSortData: any,
-  setSortReverseData: any,
+type SSEParameter = {
+  setSData: any,
+  setSRData: any,
 }
 
 // 이 함수는 SSE 연동할 때 쓰는 환경 설정용 함수이다
-
-const SSE = ({ setSortData, setSortReverseData }: sseParameter) => {
+const SSE = ({setSData, setSRData}:SSEParameter) => {
   // 여기서는 SSE Event Type과 맞춰야 하므로 custom을 써야한다.
   type FleaCustomEvents = "sse.contents_viewed" | "sse.auction_viewed";
   const source = new EventSource<FleaCustomEvents>("https://api.fleaauction.world/v2/sse/event");
-
 
   const listener: EventSourceListener<FleaCustomEvents> = (e: any) => {
     if (e.type === 'open') {
@@ -36,14 +29,15 @@ const SSE = ({ setSortData, setSortReverseData }: sseParameter) => {
       // 이부분이 핵심이 되는 부분이다.
       console.log('sse.auction_viewed')
 
-      const d = JSON.parse(e.data) as Data;
+      const d1 = JSON.parse(e.data) as SortDataState;
+      const d2 = JSON.parse(e.data) as SortReverseDataState;
 
-      console.log(d)
-
-      // state 값을 저장하는 로직, 여기서는 오름차순, 내림차순 데이터를 저장한다.
-      setSortData((prevData: any) => [...prevData, d]);
-      setSortReverseData((prevData: any) => [...prevData, d]);
-
+      setSData(d1)
+      setSRData(d2)
+      // setSData((prevData:SortDataState[]) => [...prevData, d1])
+      // setSRData((prevData:SortReverseDataState[]) => [...prevData, d2])
+      // addSortData(d1);
+      // addSortReverseData(d2);
     }
   }
 

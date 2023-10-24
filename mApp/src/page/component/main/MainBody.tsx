@@ -54,12 +54,9 @@ interface Data {
 
 type mainParameter = {
   data:Data[],
-  setData:any,
 }
-
 const MainBody = ({data}:mainParameter) => {
   const scrollViewRef = useRef<ScrollView | null>(null);
-  console.log(data)
 
   return (
     <ScrollView
