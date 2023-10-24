@@ -97,6 +97,8 @@ falling back to noop storage.
 - 고 버전일 수록 문제가 많음
 - 링크 : https://github.com/rt2zz/redux-persist/issues/1208
 - reduxjs-toolkit-persist 패키지 설치후 적용해보기 (noon 에러)
+- 기존에 사용하던 방식은 redux-persidt, react-redux 사용하던 방식에서 탈피해야하는 목적으로 reduxjs-toolkit 로 갈아 탐으로써 익숙하지 못한 환경에서 버그와 싸움 중
+- 비록 기간 내 요구사항이 딜레이 되었지만 향후 나의 한계점을 알게 되면서 미숙한 부분을 익히도록 노력해야함
 - 작업 내역 reduxError 브랜치에 따로 커밋
 ```
 
