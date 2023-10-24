@@ -96,7 +96,8 @@ falling back to noop storage.
 - 이 경우, 버전을 높이면 AsyncStorage로도 어림도 없음
 - 고 버전일 수록 문제가 많음
 - 링크 : https://github.com/rt2zz/redux-persist/issues/1208
-- reduxjs-toolkit-persist 패키지 설치후 적용해보기
+- reduxjs-toolkit-persist 패키지 설치후 적용해보기 (noon 에러)
+- 작업 내역 reduxError 브랜치에 따로 커밋
 ```
 
 ```
