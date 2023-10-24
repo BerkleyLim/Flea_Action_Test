@@ -5,7 +5,7 @@
  - URL 주소가 주어질 경우, API 형식으로 연동하는 것이 아닌 단방향 통신으로 Server와 연결 후 RN단에서는 데이터를 실시간으로 받아와야 한다.(SSE)
  - 재 연결 시 데이터 값이 완전 초기화가 되기 때문에 재호출은 금지 (React Query는 API 연동 용도에 적합)
  - 마지막으로 고객이 필요한 개발을 해주는 것으로 목표로 둔다.
- - 버그 해결 법(troubleshooting 디렉토리에 readme.md 참조) : "https://github.com/BerkleyLim/Flea_Auction_Test/tree/main/troubleshooting"
+
 
  <br/><br/>
 
@@ -68,6 +68,20 @@
 
 
 <br/><br/>
+
+
+## TroubleShooting
+- 고객사께서 치명적 이슈적인 부분의 대해서 나열해본다. (10/23 추가 요구사항)
+- 자세한건 링크를 통해 확인할 것 : "https://github.com/BerkleyLim/Flea_Auction_Test/tree/main/troubleshooting"
+
+- Issue 1
+- 코드 실행시 에러 문제 해결, 실행이 되지 않음. 또한, 이 부분을 해결해달라
+=> 이부분은 개발 후 index.android.bungle 부분을 갱신을 해야하는데 갱신이 안하고 배포를 하였다. 따라서, 그부분의 대해 해결 (10/23 반영)
+
+- Issue 2
+- 상태 관리(state)를 디바이스 저장 방식 => 메모리 저장 방식으로 해달라.
+=> 현재, React 환경에서 JS 기법으로 사용한 방식으로 Redux로 셋팅을 하였으나, React Native TS 방식으로 사용할 경우 호환성 문제와 지원하지 않는 라이브러리 에러로 현재 해결중
+
 
 ## Gettings Start
 <h3>사전 준비</h3>
