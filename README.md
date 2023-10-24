@@ -5,7 +5,7 @@
  - URL 주소가 주어질 경우, API 형식으로 연동하는 것이 아닌 단방향 통신으로 Server와 연결 후 RN단에서는 데이터를 실시간으로 받아와야 한다.(SSE)
  - 재 연결 시 데이터 값이 완전 초기화가 되기 때문에 재호출은 금지 (React Query는 API 연동 용도에 적합)
  - 마지막으로 고객이 필요한 개발을 해주는 것으로 목표로 둔다.
- - 버그 해결 법 : [troubleshoothing 참조]('https://github.com/BerkleyLim/Flea_Auction_Test/tree/main/troubleshooting')
+ - 버그 해결 법(troubleshooting 디렉토리에 readme.md 참조) : "https://github.com/BerkleyLim/Flea_Auction_Test/tree/main/troubleshooting"
 
  <br/><br/>
 
