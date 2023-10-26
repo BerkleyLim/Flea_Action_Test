@@ -69,7 +69,6 @@ function Index() {
     }, 2000);
 
     try {
-      debugger
       // 오름 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
       let tempData = sortData;
       console.log(sortData)
