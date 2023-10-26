@@ -100,7 +100,6 @@ falling back to noop storage.
 - 기존에 사용하던 방식은 redux-persidt, react-redux 사용하던 방식에서 탈피해야하는 목적으로 reduxjs-toolkit 로 갈아 탐으로써 익숙하지 못한 환경에서 버그와 싸움 중
 - 비록 기간 내 요구사항이 딜레이 되었지만 향후 나의 한계점을 알게 되면서 미숙한 부분을 익히도록 노력해야함
 - 작업 내역 reduxError 브랜치에 따로 커밋
-```
 
 ```
 A non-serializable value was detected in an action, in th e path" 'register'.
@@ -116,3 +115,11 @@ A non-serializable value was detected in an action, in th e path" 'register'.
         // 기본 값이 true지만 배포할때 코드를 숨기기 위해서 false로 변환하기 쉽게 설정에 넣어놨다.
         devTools: true,
 ```
+
+
+## 26일
+- Redux로 상태관리 기법 성공함
+- migration 기법으로 이용하여 state 값 유지 확인 가능
+- 현재, Device 저장 방식인지 확인이 필요함
+- Device 방식 사용 할 경우, 페이지 경로 이동 시 이전에 사용한 값 그대로 유지 되기 때문에 요청사항이 필요했음
+- React Native 환경에서 Session Storage 활용한 방식을 도입하기 위한 방법 파악해야 함 (현재, RN 환경 내에서 storage 방식 사용 시 noon storage 방식으로 저장되는 것이 문제)
