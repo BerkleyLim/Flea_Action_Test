@@ -68,16 +68,22 @@ function Index() {
       setRefreshing(false);
     }, 2000);
 
-    // 오름 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
-    let tempData = sortData;
-    console.log(sortData)
-    tempData = tempData?.sort((a: any, b: any) => a.auctionId - b.auctionId);
-    dispatch(changeSortData(tempData));
-
-    // 내림 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
-    tempData = sortReverseData;
-    tempData = tempData?.sort((a: any, b: any) => b.auctionId - a.auctionId);
-    dispatch(changeSortReverseData(tempData));
+    try {
+      debugger
+      // 오름 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
+      let tempData = sortData;
+      console.log(sortData)
+      tempData = tempData?.sort((a: any, b: any) => a.auctionId - b.auctionId);
+      dispatch(changeSortData(tempData));
+  
+      // 내림 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
+      tempData = sortReverseData;
+      console.log(sortReverseData)
+      tempData = tempData?.sort((a: any, b: any) => b.auctionId - a.auctionId);
+      dispatch(changeSortReverseData(tempData));
+    } catch (error) {
+      console.log(error)
+    }
   }, []);
 
 

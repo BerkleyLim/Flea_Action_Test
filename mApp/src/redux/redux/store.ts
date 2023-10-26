@@ -1,32 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import sortData from "./action/sortData";
 import sortReverseData from "./action/sortReverseData";
-import createWebStorage from 'reduxjs-toolkit-persist/lib/storage/createWebStorage';
-import { useWindowDimensions } from "react-native";
-import { persistReducer } from "reduxjs-toolkit-persist";
-import { initialWindowMetrics } from "react-native-safe-area-context";
-import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'
+import { createMigrate, persistReducer } from "reduxjs-toolkit-persist";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-// const AsyncStorage = useAsyncStorage;
-// const createNoopStorage = () => {
-//   return {
-//     getItem(_key: any) {
-//       return Promise.resolve(null);
-//     },
-//     setItem(_key: any, value: any) {
-//       return Promise.resolve(value);
-//     },
-//     removeItem(_key: any) {
-//       return Promise.resolve();
-//     },
-//   };
-// };
-
-// const storage =
-// typeof window === 'undefined'
-//   ? createNoopStorage()
-//   : createWebStorage('local');
+import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+import migrations from './persistMigration';
 
 const reducers = combineReducers({
   sortData:sortData,
@@ -37,6 +15,9 @@ const persistConfig = {
   // key:'root',
   key:'persist-store',
   storage:AsyncStorage,
+  version: 0,
+  migrate: createMigrate(migrations as any, { debug: true }),
+  stateReconciler: autoMergeLevel2,
   whitelist:['sortData', 'sortReverseData'] // 특정 reducer만 target하여 state 값 유지
 }
 
