@@ -1,32 +1,32 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import sortData from "./action/sortData";
 import sortReverseData from "./action/sortReverseData";
-import persistReducer from "redux-persist/es/persistReducer";
-// import persistReducer from "reduxjs-toolkit-persist/lib/persistReducer";
-// import { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import createWebStorage from 'reduxjs-toolkit-persist/lib/storage/createWebStorage';
-import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'
 import { useWindowDimensions } from "react-native";
+import { persistReducer } from "reduxjs-toolkit-persist";
+import { initialWindowMetrics } from "react-native-safe-area-context";
+import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const AsyncStorage = useAsyncStorage;
-const createNoopStorage = () => {
-  return {
-    getItem(_key: any) {
-      return Promise.resolve(null);
-    },
-    setItem(_key: any, value: any) {
-      return Promise.resolve(value);
-    },
-    removeItem(_key: any) {
-      return Promise.resolve();
-    },
-  };
-};
+// const createNoopStorage = () => {
+//   return {
+//     getItem(_key: any) {
+//       return Promise.resolve(null);
+//     },
+//     setItem(_key: any, value: any) {
+//       return Promise.resolve(value);
+//     },
+//     removeItem(_key: any) {
+//       return Promise.resolve();
+//     },
+//   };
+// };
 
-const storage =
-typeof useWindowDimensions === 'undefined'
-  ? createNoopStorage()
-  : createWebStorage('local');
+// const storage =
+// typeof window === 'undefined'
+//   ? createNoopStorage()
+//   : createWebStorage('local');
 
 const reducers = combineReducers({
   sortData:sortData,
@@ -34,11 +34,10 @@ const reducers = combineReducers({
 })
 
 const persistConfig = {
-  key:'root',
-  // storage:AsyncStorage
-  storage
-  // storage:createWebStorage('local')
-  // whitelist:['user']
+  // key:'root',
+  key:'persist-store',
+  storage:AsyncStorage,
+  whitelist:['sortData', 'sortReverseData'] // 특정 reducer만 target하여 state 값 유지
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
