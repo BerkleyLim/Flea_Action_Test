@@ -20,11 +20,15 @@ export const sortReverseDataSlice = createSlice({
       return action.payload;
     },
 
-    getListSortReverseData: (state:SortReverseDataState[] = initialState, action:any) => {
+    getListSortReverseData: (state:SortReverseDataState[] = initialState) => {
       return state;
     },
+
+    removeSortReverseData(state:SortReverseDataState[] = initialState) {
+      return []
+    }
   },
 });
 
-export const { addSortReverseData, getListSortReverseData, changeSortReverseData } = sortReverseDataSlice.actions;
+export const { addSortReverseData, getListSortReverseData, changeSortReverseData, removeSortReverseData } = sortReverseDataSlice.actions;
 export default sortReverseDataSlice.reducer;

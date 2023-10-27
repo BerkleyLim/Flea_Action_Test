@@ -25,8 +25,12 @@ export const SortDataSlice = createSlice({
     getListSortData(state:SortDataState[] = initialState, action:any) {
       return state;
     },
+
+    removeSortData(state:SortDataState[] = initialState) {
+      return []
+    }
   },
 });
 
-export const { addSortData,  getListSortData, changeSortData } = SortDataSlice.actions;
+export const { addSortData,  getListSortData, changeSortData, removeSortData } = SortDataSlice.actions;
 export default SortDataSlice.reducer;

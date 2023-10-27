@@ -15,8 +15,8 @@ function Index() {
   const [sRData, setSRData] = React.useState<SortReverseDataState>({auctionId:0, viewCount:0});
   const dispatch = useDispatch();
 
-  const sortData = useSelector((state: any) => state.sortData);
-  const sortReverseData = useSelector((state: any) => state.sortReverseData);
+  const sortData = React.useMemo(() => useSelector((state: any) => {return state.sortData as SortDataState[]}),[]);
+  const sortReverseData = React.useMemo(() => useSelector((state: any) => {return state.sortReverseData as SortReverseDataState[]}),[]);
   const [refreshing, setRefreshing] = React.useState(false);
 
   // sortData 메모리 저장 (useMemo 사용)
@@ -24,42 +24,52 @@ function Index() {
     if (sData.auctionId !== 0) {
       dispatch(addSortData(sData))
     }
-  },[sData])
-  useEffect(() => {
     // 여기서 viewCount 갱신 시작
-    let data1 = sortData;
-    if (!!sortData && sortData.length > 0) {
-      for (let index = sortData.length - 2; index >= 0; index--) {
-        console.log(data1[sortData.length - 1].auctionId === data1[index].auctionId)
-        if (data1[sortData.length - 1].auctionId === data1[index].auctionId) {
-          data1[index].viewCount = sortData[sortData.length - 1].viewCount;
-        }
-      }
-    }
-    console.log(data1)
-    dispatch(changeSortData(data1));
-  }, [sortData])
+    const data2 : SortReverseDataState[] = sortReverseData.map(
+      (d) => 
+        d.auctionId === sRData.auctionId ?
+        {...d, viewCount:sRData.viewCount} :
+          d
+    )
+    dispatch(changeSortReverseData(data2));
+  },[sData])
 
-  // sortReverseData 메모리 저장 (useMemo 사용)
+// sortReverseData 메모리 저장 (useMemo 사용)
   useEffect(() => {
     if (sRData.auctionId !== 0) {
       dispatch(addSortReverseData(sRData))
     }
-  },[sRData])
-  useEffect(() => {
 
-    // dispatch(addSortReverseData(sRData))
     // 여기서 viewCount 갱신 시작
-    let data2 = sortReverseData;
-    if (!!sortReverseData && sortReverseData.length > 0) {
-      for (let index = sortReverseData.length - 2; index >= 0; index--) {
-        if (data2[sortReverseData.length - 1].auctionId === data2[index].auctionId) {
-          data2[index].viewCount = sortReverseData[sortReverseData.length - 1].viewCount;
-        }
-      }
-    }
-    dispatch(changeSortReverseData(data2));
-  }, [sortReverseData])
+    const data1 : SortDataState[] = sortData.map(
+      (d) => 
+        d.auctionId === sRData.auctionId ?
+         {...d, viewCount:sRData.viewCount} : 
+         d
+    )
+    console.log(data1)
+    dispatch(changeSortData(data1));
+  },[sRData])
+
+
+
+
+  const sortAsc = React.useCallback(() => {
+    console.log(sortData)
+    let tempData = sortData.sort((a: SortDataState, b: SortDataState) => a.auctionId - b.auctionId);
+    dispatch(changeSortData(tempData));
+  },[])
+
+  const sortDesc = React.useCallback(() => {
+    let tempData = sortReverseData?.sort((a: SortReverseDataState, b: SortReverseDataState) => b.auctionId - a.auctionId);
+    dispatch(changeSortReverseData(tempData));
+  },[])
+
+  // 시작 할 때, sse를 킨다
+  useEffect(() => {
+    SSE({ setSData, setSRData });
+  }, [])
+
 
   // 이부분은 pull-to-refresh를 위한 함수 로직
   const onRefresh = React.useCallback(async () => {
@@ -67,29 +77,24 @@ function Index() {
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
-
-    try {
-      // 오름 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
-      let tempData = sortData;
-      console.log(sortData)
-      tempData = tempData?.sort((a: any, b: any) => a.auctionId - b.auctionId);
-      dispatch(changeSortData(tempData));
-  
-      // 내림 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
-      tempData = sortReverseData;
-      console.log(sortReverseData)
-      tempData = tempData?.sort((a: any, b: any) => b.auctionId - a.auctionId);
-      dispatch(changeSortReverseData(tempData));
-    } catch (error) {
-      console.log(error)
-    }
+    let s = useSelector((state: any) => state.sortData as SortDataState[]);
+    console.log(s)
   }, []);
 
 
-  // 시작 할 때, sse를 킨다
   useEffect(() => {
-    SSE({ setSData, setSRData });
+      console.log(sortData)
+      console.log(sortReverseData)
+    try {
+      // 오름 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
+      sortAsc();
+  
+      // 내림 차순 로직 실시, 새로고침 시 state 값 날라가서 AsyncStorage 사용
+      sortDesc();
 
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
 
@@ -98,7 +103,9 @@ function Index() {
     <ScrollView
       contentContainerStyle={styles.scrollView}
       refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        // <RefreshControl refreshing={refreshing} onRefresh={onRefresh} enabled={false}/>
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+        // <RefreshControl refreshing={refreshing} />
       }>
       <Header></Header>
       <Main />

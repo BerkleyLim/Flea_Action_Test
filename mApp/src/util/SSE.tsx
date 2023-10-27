@@ -1,6 +1,6 @@
 import EventSource, { EventSourceListener } from "react-native-sse";
-import { SortDataState, addSortData } from "../redux/redux/action/sortData";
-import { SortReverseDataState, addSortReverseData } from "../redux/redux/action/sortReverseData";
+import { SortDataState } from "../redux/redux/action/sortData";
+import { SortReverseDataState } from "../redux/redux/action/sortReverseData";
 
 type SSEParameter = {
   setSData: any,

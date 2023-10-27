@@ -19,11 +19,11 @@ function App(): JSX.Element {
   return (
     // Provider Setting
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
         <SafeAreaView>
           <Index />
         </SafeAreaView>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   );
 }
