@@ -92,9 +92,6 @@ falling back to noop storage.
 
 ## 24일
 - Redux 적용
-- redux-persist 6.0.0 -> 5.10.0 다운그레이드
-- 이 경우, 버전을 높이면 AsyncStorage로도 어림도 없음
-- 고 버전일 수록 문제가 많음
 - 링크 : https://github.com/rt2zz/redux-persist/issues/1208
 - reduxjs-toolkit-persist 패키지 설치후 적용해보기 (noon 에러)
 - 기존에 사용하던 방식은 redux-persidt, react-redux 사용하던 방식에서 탈피해야하는 목적으로 reduxjs-toolkit 로 갈아 탐으로써 익숙하지 못한 환경에서 버그와 싸움 중
@@ -123,3 +120,9 @@ A non-serializable value was detected in an action, in th e path" 'register'.
 - 현재, Device 저장 방식인지 확인이 필요함
 - Device 방식 사용 할 경우, 페이지 경로 이동 시 이전에 사용한 값 그대로 유지 되기 때문에 요청사항이 필요했음
 - React Native 환경에서 Session Storage 활용한 방식을 도입하기 위한 방법 파악해야 함 (현재, RN 환경 내에서 storage 방식 사용 시 noon storage 방식으로 저장되는 것이 문제)
+
+## 27일
+- 디바이스 문제 저장 해결(?)
+- 기존 데이터를 열면 디바이스 저장 방식에서 값이 유지되는 현상으로 해결 됨
+- 현재, redux를 활용하여 새로 고침 시 값 유지 되며 정렬 가능
+- 또한, 앱이 꺼지면 다시 값들이 사라지는 것을 확인함
