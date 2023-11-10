@@ -71,23 +71,6 @@
 <br/><br/>
 
 
-## TroubleShooting
-- 고객사께서 치명적 이슈적인 부분의 대해서 나열해본다. (10/23 추가 요구사항)
-- 자세한건 링크를 통해 확인할 것 : "https://github.com/BerkleyLim/Flea_Auction_Test/tree/main/troubleshooting"
-
-- Issue 1
-- 코드 실행시 에러 문제 해결, 실행이 되지 않음. 또한, 이 부분을 해결해달라
-=> 이부분은 개발 후 index.android.bungle 부분을 갱신을 해야하는데 갱신이 안하고 배포를 하였다. 따라서, 그부분의 대해 해결 (10/23 반영)
-
-- Issue 2
-- Redux 사용 전, 앱 종료 이후에도 캐쉬나 이런 것들은 다 삭제가 되기 때문에 기능상 문제 없음
-- Redux로 반영 한 이후, 기존 데이터 그대로 저장 되기 때문에 고객사에게 문의온 것을 해결접근하도록 함
-- 상태 관리(state)를 디바이스 저장 방식 => 메모리 저장 방식으로 해달라.
-=> 현재, React 환경에서 JS 기법으로 사용한 방식으로 Redux로 셋팅을 하였으나, React Native TS 방식으로 사용 이후 redux-persist 문제점 발생 (noon에러 발생), 기존에 redux 라이브러리에 제공하는 SessionStorage, LocalStorage 방식 지원 안됨
-- AsyncStorage 방식으로 사용하고자 하였지만 문제점이 많으니, Pull-To-Refresh 기능을 사용하였을때 새로고침 기능을 한 것처럼 하여 실제 새로고침 기능이 동작 안되게 개발해서 풀어야됨
-- 혹은, Redux Devtools를 분석을 하였을 때, state 값은 그대로 저장되어져 있다.
-- 이 경우, 리렌더링 중 useSelector가 불려오는 시간이 존재한 것으로 판단되어져 있고, 그 타이밍을 보고 정렬 기능 활용해서 풀어야함
-
 
 ## Gettings Start
 <h3>사전 준비</h3>
